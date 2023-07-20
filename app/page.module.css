@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.54);
+}
+
+.button{
+  width: 20vh;
+  height: 5vh;
+  border-radius: 20px;
+  cursor: pointer;
+}
