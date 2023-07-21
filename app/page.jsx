@@ -1,13 +1,9 @@
 import Link from 'next/link'
 import styles from './page.module.css'
-// import { useRouter } from "next/navigation";
-// const { push } = useRouter();
-
 
 export default function Home() {
 const setIdentity = (value) => {
-  // window.localStorage.setItem('Identity', JSON.stringify("value"))
-  // console.log(value);
+
 }
   return (
     <main className={styles.main}>
