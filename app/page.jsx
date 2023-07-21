@@ -11,6 +11,7 @@ const setIdentity = (value) => {
 }
   return (
     <main className={styles.main}>
+      <h1>welcome to our website!</h1>
       <Link href="/main" >
         <button className={styles.button} onClick={setIdentity("visitor")}>
             visitor
