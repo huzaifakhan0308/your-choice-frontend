@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import styles from './page.module.css'
-import { useRouter } from 'next/router';
 import Link from "next/link";
 
 function Page() {

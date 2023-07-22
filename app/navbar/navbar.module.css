@@ -8,3 +8,11 @@
 .logo {
     height: 20vh;
 }
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar ul li {
+    margin-left: 5vh;
+}

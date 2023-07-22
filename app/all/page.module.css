@@ -1,0 +1,35 @@
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 5px;
+    background-color: rgba(0, 0, 0, 0.211);
+}
+
+.img {
+    width: 100%;
+    aspect-ratio: 1/0.8;
+    background-position: center;
+    background-size: cover;
+}
+
+@media screen and (min-width: 650px) {
+    .cards {
+        flex-direction: column;
+        width: 30vh;
+        margin: 3px;
+    }
+    @media screen and (min-width: 800px) {
+        .cards {
+            width: 40vh;
+            margin: 5px;
+        }
+    }
+}
