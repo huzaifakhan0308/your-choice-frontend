@@ -3,7 +3,25 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    border: 2px solid red;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.menu button {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  margin: 10px;
+  font-size: large;
+  cursor: pointer;
+}
+
+.menu button.selected {
+  border-bottom: 2px solid red;
+  color: red;
 }
 
 .products {
@@ -19,7 +37,6 @@
   flex-direction: column;
   width: 100%;
   aspect-ratio: 1/1.3;
-  background-color: rgba(0, 0, 0, 0.211);
 }
 
 .img {
@@ -27,6 +44,40 @@
   aspect-ratio: 1/0.8;
   background-position: center;
   background-size: cover;
+}
+
+.detailDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.068);
+  width: 100%;
+  aspect-ratio: 1/0.5;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.colorsDiv {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.circles {
+  width: 3vh;
+  height: 3vh;
+  border-radius: 50%;
+  margin: 2px;
+}
+
+.link {
+  width: 100%;
+}
+
+.detailDiv button {
+  width: 100%;
+  aspect-ratio: 1/0.1;
 }
 
 @media screen and (min-width: 550px) {
