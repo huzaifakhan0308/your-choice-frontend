@@ -12,7 +12,8 @@ function Page() {
       price: "2000",
       off: "20",
       colors: ["red", "green"],
-      gender: "female"
+      gender: "female",
+      type: "shoes"
     },
     {
       title: "peshawari chappal",
@@ -20,7 +21,8 @@ function Page() {
       price: "1000",
       off: "20",
       colors: ["black", "brown"],
-      gender: "male"
+      gender: "male",
+      type: "handbag"
     },
     {
       title: "shoes",
@@ -28,7 +30,8 @@ function Page() {
       price: "500",
       off: "",
       colors: ["black", "brown"],
-      gender: "kid"
+      gender: "kid",
+      type: "jackets"
     },
     {
       title: "shoes",
@@ -36,24 +39,27 @@ function Page() {
       price: "2000",
       off: "20",
       colors: ["red", "green"],
-      gender: "female"
-    },
-    {
-      title: "peshawari chappal",
-      img: shoes,
-      price: "1000",
-      off: "20",
-      colors: ["black", "brown"],
-      gender: "male"
+      gender: "female",
+      type: "shoes"
     },
     {
       title: "shoes",
       img: shoes,
-      price: "500",
-      off: "",
-      colors: ["black", "brown"],
-      gender: "kid"
+      price: "2000",
+      off: "20",
+      colors: ["red", "green"],
+      gender: "female",
+      type: "shoes"
     },
+    {
+      title: "shoes",
+      img: shoes,
+      price: "2000",
+      off: "20",
+      colors: ["red", "green"],
+      gender: "female",
+      type: "shoes"
+    }
   ]
   return (
     <div className={styles.container}>
