@@ -22,12 +22,11 @@ const Navbar = () => {
     return (
         <>
             <header className={styles.headerMob}>
-                <nav className={styles.navbar}>
+                <nav className={styles.Mobnavbar} style={{ display: showMenu ? "none" : "flex" }}>
                     <img src={logo.src} alt="logo" className={styles.logo} />
                     <img
                         src={menuIcon.src}
                         alt="menu icon"
-                        style={{ display: showMenu ? "none" : "flex" }}
                         onClick={() => { setShowMenu(true) }}
                         className={styles.mobileMenu}
                     />

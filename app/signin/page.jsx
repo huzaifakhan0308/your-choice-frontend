@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './page.module.css'
 import Link from "next/link";
+import logo from '../../public/your-choice-logo.png';
 
 function Page() {
   const [username, setUsername] = useState('');
@@ -28,40 +29,43 @@ useEffect(() => {
 })
 
   return (
-    <div className={styles.container}>
-      <h1>Sign In Here</h1>
-      {boolean?
-       <div className={styles.loggedIn}>
-          <h2>succesfully loggedIn</h2>
-          <Link href="/main" className={styles.form} style={{ textDecoration: "none" }}>
-            <button>Go to Home</button>
-          </Link>
-       </div>
-       :
-       <>
-        <h2>Note: only owner can sign in</h2>
-        <form onSubmit={handleFormSubmit} className={styles.form}>
-          <p style={{color: "red"}} >{error}</p>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit">Sign In</button>
-        </form>
-          <Link href="/" className={styles.form} style={{textDecoration: "none"}}>
-            <button>Back</button>
-          </Link>
-       </>
-       }
-    </div>
+    <>
+      <img className={styles.img} src={logo.src} alt="" />
+      <div className={styles.container}>
+        <h1>Sign In Here</h1>
+        {boolean?
+        <div className={styles.loggedIn}>
+            <h2>Succesfully LoggedIn!</h2>
+            <Link href="/main" className={styles.form} style={{ textDecoration: "none" }}>
+              <button>Go to Home</button>
+            </Link>
+        </div>
+        :
+        <>
+          <h2>Note: only owner can sign in</h2>
+          <form onSubmit={handleFormSubmit} className={styles.form}>
+            <p style={{color: "red"}} >{error}</p>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button type="submit">Sign In</button>
+          </form>
+            <Link href="/" className={styles.form} style={{textDecoration: "none"}}>
+              <button style={{ backgroundColor: "black", color: "white" }}>Back</button>
+            </Link>
+        </>
+        }
+      </div>
+    </>
   )
 }
 

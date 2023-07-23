@@ -4,7 +4,11 @@
     flex-direction: column;
     width: 100%;
     min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.371);
+}
+
+.img {
+    height: 15vh;
+    position: absolute;
 }
 
 .container h1 {
@@ -33,37 +37,60 @@
     min-width: 28vh;
 }
 
-
 .form input {
     height: 5vh;
     padding: 5px;
     margin: 5px;
     width: 100%;
     outline: none;
+    border: none;
+    border-bottom: 1px solid black;
 }
 
 .form button {
-    width: 60%;
-    height: 4vh;
-    margin: 5px;
-    border-radius: 20px;
-    cursor: pointer;
-    border: none;
-    font-size: larger;
+  width: 22vh;
+  height: 5vh;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: larger;
+  z-index: 2;
+  border: 2px solid rgb(0, 0, 0);
+  background-color: #ffffff00;
+  transition: transform 0.3s ease;
+}
+
+.form button:hover {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  transform: scale(1.1);
+}
+
+.form button:active {
+  background-color: rgb(124, 124, 124);
+  color: rgb(255, 255, 255);
 }
 
 @media screen and (min-width: 700px) {
+    .img {
+        height: 25vh;
+    }
+
     .form {
         min-width: 50vh;
     }
 
-    .form button {
-        height: 5vh;
-        width: 50%;
+    .form input {
+        font-size: large;
     }
     
     .container h2 {
         font-size: 25px;
+    }
+
+    .form button {
+      width: 30vh;
+      height: 6vh;
     }
 
     @media screen and (min-width: 1500px) {
