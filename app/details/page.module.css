@@ -9,6 +9,9 @@
     width: 90%;
     height: 70vh;
     margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.095);
+    border-radius: 5px;
+    padding: 20px;
 }
 
 .card {
@@ -50,14 +53,51 @@
 }
 
 .contentDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 100%;
     width: 100%;
+    padding: 10px;
+}
+
+.colorButtons button {
+    width: 3vh;
+    height: 3vh;
+    border-radius: 50%;
+    margin: 3px;
+}
+
+.sizesButtons button {
+    width: 3vh;
+    height: 3vh;
+    border: 1px solid rgba(0, 0, 0, 0.611);
+    margin: 2px;
+}
+
+.BuyBtn {
+    width: 18vh;
+    height: 4vh;
+    border-radius: 25px;
+    margin: 5px;
 }
 
 @media screen and (min-width: 500px) {
     .product {
         width: 80%;
         height: 80vh;
+    }
+    .colorButtons button {
+        height: 4vh;
+        width: 4vh;
+    }
+    .sizesButtons button {
+        height: 4vh;
+        width: 4vh;
+    }
+    .BuyBtn {
+        width: 20vh;
+        height: 5vh;
     }
     @media screen and (min-width: 900px) {
         .card {

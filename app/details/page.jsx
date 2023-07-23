@@ -16,7 +16,8 @@ function Page() {
       colors: ["red", "green"],
       gender: "female",
       type: "shoes",
-      _id: "1"
+      _id: "1",
+      sizes: [7, 8, 9, 10, 11]
     },
     {
       title: "handbag",
@@ -26,7 +27,8 @@ function Page() {
       colors: ["black", "brown"],
       gender: "male",
       type: "handbag",
-      _id: "2"
+      _id: "2",
+      sizes: [7, 8, 9, 10, 11]
     },
     {
       title: "jackets",
@@ -36,7 +38,8 @@ function Page() {
       colors: ["black", "brown"],
       gender: "kid",
       type: "jackets",
-      _id: "3"
+      _id: "3",
+      sizes: [3, 4, 5, 6, 7]
     },
     {
       title: "shoes",
@@ -46,7 +49,8 @@ function Page() {
       colors: ["red", "green"],
       gender: "female",
       type: "shoes",
-      _id: "4"
+      _id: "4",
+      sizes: [7, 8, 9, 10, 11]
     },
     {
       title: "shoes",
@@ -56,7 +60,8 @@ function Page() {
       colors: ["red", "green"],
       gender: "female",
       type: "shoes",
-      _id: "5"
+      _id: "5",
+      sizes: [7, 8, 9, 10, 11]
     },
     {
       title: "shoes",
@@ -66,11 +71,16 @@ function Page() {
       colors: ["red", "green"],
       gender: "female",
       type: "shoes",
-      _id: "6"
+      _id: "6",
+      sizes: [7,8,9,10,11]
     }
   ]
 
   const [id, setId] = useState("")
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedSize, setSelectedSize] = useState('');
+  const availableSizes = ['7', '8', '9', '10', '11'];
 
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem("yourChoice-products-id"))
@@ -78,8 +88,6 @@ function Page() {
       setId(data)
     }
   })
-
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handleNextImage = () => {
     if (currentImageIndex < 3) {
@@ -119,7 +127,46 @@ function Page() {
                 </div>
               </div>
               <div className={styles.contentDiv}>
-                details
+                <h2>{e.title}</h2>
+                <p>Price: ${e.price}</p>
+                {e.off?
+                  <p>Discount: {e.off}%</p>
+                  :
+                  ""
+                }
+                <h4>Select Available Colors:</h4>
+                <div className={styles.colorButtons}>
+                  {e.colors.map((color) => (
+                    <button
+                      key={color}
+                      onClick={() => setSelectedColor(color)}
+                      style={{
+                        border: selectedColor === color ? "2px solid black" : 'none',
+                        backgroundColor: color
+                      }}
+                    >
+                    </button>
+                  ))}
+                </div>
+                {e.sizes?
+                  <>
+                    <h4>Select Available Sizes:</h4>
+                    <div className={styles.sizesButtons}>
+                      {e.sizes.map((size) => (
+                        <button
+                          key={size}
+                          onClick={() => setSelectedSize(size)}
+                          style={{
+                            backgroundColor: selectedSize === size ? 'gray' : 'transparent'
+                          }}
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                : ""}
+                <button className={styles.BuyBtn}>Buy Now</button>
               </div>
             </div>
           ))}
