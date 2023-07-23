@@ -31,32 +31,38 @@ const Navbar = () => {
                         className={styles.mobileMenu}
                     />
                 </nav>
-                <ul className={styles.mobileUl} style={{ display: showMenu ? "flex" : "none" }}>
-                    <Link href="/main" >
-                        <li onClick={handleLinkClick}>
-                            Home
+                <div className={styles.ulDiv} style={{ display: showMenu ? "flex" : "none" }}>
+                    <button onClick={handleLinkClick}>X</button>
+                    <ul className={styles.mobileUl} >
+                        <li className={styles.li} style={{ color: "white" }} >
+                            Menu
                         </li>
-                    </Link>
-                    {boolean ?
-                        <>
-                            <Link href="/orders" >
-                                <li onClick={handleLinkClick}>
-                                    Orders
-                                </li>
-                            </Link>
-                            <Link href="/products" >
-                                <li onClick={handleLinkClick}>
-                                    My products
-                                </li>
-                            </Link>
-                        </>
-                        :
-                        <Link href="/contact" >
+                        <Link href="/main" >
                             <li onClick={handleLinkClick}>
-                                Contact us
+                                Home
                             </li>
-                        </Link>}
-                </ul>
+                        </Link>
+                        {boolean ?
+                            <>
+                                <Link href="/orders" >
+                                    <li onClick={handleLinkClick}>
+                                        Orders
+                                    </li>
+                                </Link>
+                                <Link href="/products" >
+                                    <li onClick={handleLinkClick}>
+                                        My products
+                                    </li>
+                                </Link>
+                            </>
+                            :
+                            <Link href="/contact" >
+                                <li onClick={handleLinkClick}>
+                                    Contact us
+                                </li>
+                            </Link>}
+                    </ul>
+                </div>
             </header>
             <header className={styles.header}>
                 <nav className={styles.navbar}>
@@ -75,7 +81,7 @@ const Navbar = () => {
                             </li>
                         </Link>
                         <Link href="/products" >
-                            <li>
+                            <li style={{ color: "red" }}>
                                 My products
                             </li>
                         </Link>
