@@ -34,7 +34,13 @@
     width: 100%;
 }
 
-
+.img {
+  width: 100%;
+  aspect-ratio: 1/0.8;
+  background-position: center;
+  background-size: cover;
+  transition: 0.1s ease-in-out;
+}
 
 .buttonsContainer button {
     width: 2.5vh;
