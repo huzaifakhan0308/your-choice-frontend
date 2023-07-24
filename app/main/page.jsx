@@ -138,7 +138,7 @@ function Page() {
                 <h2>{product[currentProductIndex].title}</h2>
                 <p>Price: ${product[currentProductIndex].price}</p>
                 <p>Discount: {product[currentProductIndex].off}%</p>
-                <div>Available Colors: <br />
+                <div style={{ color: "red" }}>Available Colors: <br />
                   <div className={style.colorsDiv}>
                     {product[currentProductIndex].colors.map((color, index) => (
                       <div className={style.circles} style={{ backgroundColor: color }} key={index}></div>

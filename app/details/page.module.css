@@ -9,9 +9,10 @@
     width: 90%;
     height: 70vh;
     margin-top: 20px;
-    background-color: rgba(0, 0, 0, 0.095);
     border-radius: 5px;
-    padding: 20px;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
 }
 
 .card {
@@ -19,6 +20,9 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
+    background-color: rgba(248, 248, 248, 0.539);
+    padding: 20px;
+    font-weight: bold;
 }
 
 .imgSideDiv {
@@ -58,7 +62,7 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-    padding: 10px;
+    padding: 20px;
 }
 
 .colorButtons button {
@@ -66,6 +70,7 @@
     height: 3vh;
     border-radius: 50%;
     margin: 3px;
+    cursor: pointer;
 }
 
 .sizesButtons button {
@@ -73,13 +78,48 @@
     height: 3vh;
     border: 1px solid rgba(0, 0, 0, 0.611);
     margin: 2px;
+    cursor: pointer;
 }
 
 .BuyBtn {
-    width: 18vh;
-    height: 4vh;
-    border-radius: 25px;
-    margin: 5px;
+  width: 22vh;
+  height: 5vh;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: larger;
+  z-index: 2;
+  background-color: black;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.BuyBtn:hover {
+  background-color: rgba(255, 255, 255, 0);
+  color: black;
+  transform: scale(1.1);
+}
+
+.BuyBtn:active {
+  background-color: rgb(52, 52, 52);
+  color: rgb(255, 255, 255);
+}
+
+.footer {
+    min-height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    border-top: 1px solid black;
+    font-size: small;
+    padding: 10px;
+    margin-top: 2vh;
+}
+
+.footer span {
+    font-weight: bold;
+    margin: 10px;
 }
 
 @media screen and (min-width: 500px) {
@@ -96,9 +136,10 @@
         width: 4vh;
     }
     .BuyBtn {
-        width: 20vh;
-        height: 5vh;
+      width: 30vh;
+      height: 6vh;
     }
+    
     @media screen and (min-width: 900px) {
         .card {
             flex-direction: row;
@@ -106,6 +147,11 @@
         .buttonsContainer button {
             width: 4vh;
             height: 4vh;
+        }
+        .footer {
+            flex-direction: row;
+            height: 10vh;
+            font-size: 15px;
         }
     }
 }

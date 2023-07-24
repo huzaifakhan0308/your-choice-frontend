@@ -88,7 +88,7 @@ const Navbar = () => {
                         </>
                         : 
                         <Link href="/contact" >
-                            <li>
+                            <li style={{ color: "red" }}>
                                 Contact us
                             </li>
                         </Link>}

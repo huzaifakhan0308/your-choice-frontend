@@ -51,7 +51,7 @@ function Page() {
       title: "shoes",
       img: shoes,
       price: "2000",
-      off: "20",
+      off: "",
       colors: ["red", "green"],
       gender: "female",
       type: "shoes",
@@ -66,6 +66,16 @@ function Page() {
       gender: "female",
       type: "shoes",
       _id: "6"
+    },
+    {
+      title: "shoes",
+      img: shoes,
+      price: "2000",
+      off: "",
+      colors: ["red", "green"],
+      gender: "female",
+      type: "shoes",
+      _id: "7"
     }
   ]
 
@@ -75,52 +85,63 @@ function Page() {
     localStorage.setItem("yourChoice-products-id", JSON.stringify(id))
   }
   return (
-    <div className={styles.container}>
+    <>
       <Navbar />
-      <h2>Explore our ALL Products Page – Your your-choice-shop for men, women, and kids products, carefully curated for your convenience</h2>
-      <div className={styles.menu}>
-        <button
-          className={selectedType === 'shoes' ? styles.selected : ''}
-          onClick={() => setSelectedType('shoes')}
-        >
-          Shoes
-        </button>
-        <button
-          className={selectedType === 'jackets' ? styles.selected : ''}
-          onClick={() => setSelectedType('jackets')}
-        >
-          Jackets
-        </button>
-        <button
-          className={selectedType === 'handbag' ? styles.selected : ''}
-          onClick={() => setSelectedType('handbag')}
-        >
-          Handbags
-        </button>
-      </div>
-      <div className={styles.products}>
-        {products.filter((product) => product.type === selectedType).map((e , index) => (
-          <div className={styles.cards} key={index}>
-            <div className={styles.img} style={{ backgroundImage: `url(${e.img.src})` }} ></div>
-            <div className={styles.detailDiv}>
-              <h3>{e.title}</h3>
-              <p>PKR: {e.price}</p>
-              {<p>OFF: {e.off}%</p>}
-              <div>Available Colors: <br /> 
-                <div className={styles.colorsDiv}>
-                  {e.colors.map((color, index) => (
-                    <div className={styles.circles} style={{ backgroundColor: color }} key={index}></div>
-                  ))}
+      <main className={styles.container}>
+        <h1>Explore our ALL Products Page – Your your-choice-shop for men, women, and kids products, carefully curated for your convenience</h1>
+        <div className={styles.menu}>
+          <button
+            className={selectedType === 'shoes' ? styles.selected : ''}
+            onClick={() => setSelectedType('shoes')}
+          >
+            Shoes
+          </button>
+          <button
+            className={selectedType === 'jackets' ? styles.selected : ''}
+            onClick={() => setSelectedType('jackets')}
+          >
+            Jackets
+          </button>
+          <button
+            className={selectedType === 'handbag' ? styles.selected : ''}
+            onClick={() => setSelectedType('handbag')}
+          >
+            Handbags
+          </button>
+        </div>
+        <div className={styles.products}>
+          {products.filter((product) => product.type === selectedType).map((e , index) => (
+            <div className={styles.cards} key={index}>
+              <div className={styles.img} style={{ backgroundImage: `url(${e.img.src})` }} ></div>
+              <div className={styles.detailDiv}>
+                <h3>{e.title}</h3>
+                <p>Price: {e.price}Rs</p>
+                {e.off? <p>OFF: {e.off}%</p>: ""}
+                <div>Available Colors: <br /> 
+                  <div className={styles.colorsDiv}>
+                    {e.colors.map((color, index) => (
+                      <div className={styles.circles} style={{ backgroundColor: color }} key={index}></div>
+                    ))}
+                  </div>
                 </div>
+                <Link className={styles.link} href="./details" onClick={() => setDetailsId(e._id)}>
+                  <button>View Product</button>
+                </Link>
               </div>
-              <Link className={styles.link} href="./details" onClick={() => setDetailsId(e._id)}>
-                <button>View product</button>
-              </Link>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
+          ))}
+        </div>
+      </main>
+      <footer className={styles.footer}>
+        © 2023 YourChoiceShopping Services (Pvt) Ltd. All Rights Reserved.
+        <span>
+          Made by Huzaifa Khan <br />
+          <a href='mailto:huzaifa031252khan@gmail.com' style={{ color: "red" }}>
+            huzaifa031252khan@gmail.com
+          </a>
+        </span>
+      </footer>
+    </>
   )
 }
 
