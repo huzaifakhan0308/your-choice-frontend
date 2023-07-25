@@ -59,7 +59,7 @@ useEffect(() => {
             />
             <button type="submit">Sign In</button>
           </form>
-            <Link href="/" className={styles.form} style={{textDecoration: "none"}}>
+            <Link href="/main" className={styles.form} style={{textDecoration: "none"}}>
               <button style={{ backgroundColor: "black", color: "white" }}>Back</button>
             </Link>
         </>

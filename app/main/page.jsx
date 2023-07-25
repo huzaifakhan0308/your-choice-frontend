@@ -89,6 +89,7 @@ function Page() {
   ]
 
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const [changeColor, setChangeColor] = useState(false);
 
   const getNextProductWithOff = (startIndex, step) => {
     let currentIndex = startIndex;
@@ -108,6 +109,13 @@ function Page() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setChangeColor(prevChangeColor => !prevChangeColor);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const setDetailsId = (id) => {
     localStorage.setItem("yourChoice-products-id", JSON.stringify(id))
   }
@@ -124,7 +132,7 @@ function Page() {
     <>
       <Navbar />
       <main className={style.main}>
-        <h1>OFF% Products </h1>
+        <h1 style={{ color: changeColor? "red" : "black"}} >OFF% Products</h1>
         <div className={style.offProducts} style={{ backgroundImage: `url(${product[currentProductIndex].img[0].src})` }}>
           <div className={style.layout}>
             <button className={style.nextBtn} onClick={handleBackImage}>
@@ -136,7 +144,7 @@ function Page() {
               </div>
               <div className={style.detailsDiv}>
                 <h2>{product[currentProductIndex].title}</h2>
-                <p>Price: ${product[currentProductIndex].price}</p>
+                <p>Rs: {product[currentProductIndex].price}</p>
                 <p>Discount: {product[currentProductIndex].off}%</p>
                 <div style={{ color: "red" }}>Available Colors: <br />
                   <div className={style.colorsDiv}>
@@ -155,7 +163,7 @@ function Page() {
             </button>
           </div>
         </div>
-        <h2>Select Type You Want</h2>
+        <h2 style={{ paddingTop: "15px"}} >Select Type You Want</h2>
         <div className={style.products}>
           {products.map((e, index) => (
             <Link href={e.linkTo} className={style.cards} key={index} style={{ backgroundImage: `url(${e.img.src})`}}>

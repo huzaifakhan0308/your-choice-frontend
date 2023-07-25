@@ -8,6 +8,7 @@
 
 .main h1 {
     font-size: x-large;
+    padding: 10px;
 }
 
 .offProducts {
@@ -15,8 +16,9 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 40vh;
+    height: 55vh;
     background-position: center;
+    background-size: cover;
 }
 
 .layout {
@@ -29,8 +31,8 @@
 }
 
 .nextBtn {
-    width: 2vh;
-    height: 2vh;
+    width: 3vh;
+    height: 3vh;
     background-color: rgba(0, 0, 0, 0);
     border: none;
     cursor: pointer;
@@ -50,11 +52,12 @@
     background-color: rgba(0, 0, 0, 0.472);
     color: white;
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .details .imgSideDiv {
     width: 100%;
-    height: 100%;
+    height: 55%;
 }
 
 .details .imgSideDiv div {
@@ -69,8 +72,9 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    height: 100%;
-    padding: 10px;
+    height: 45%;
+    padding-top: 10px;
+    font-size: smaller;
 }
 
 .colorsDiv {
@@ -176,11 +180,9 @@
 }
 
 @media screen and (min-width: 700px) {
-    .main h1 {
-        font-size: xx-large;
-    }
-    .offProducts {
-        height: 50vh;
+
+    .details {
+        flex-direction: row;
     }
 
     .products {
@@ -190,15 +192,21 @@
         overflow-y: hidden;
         justify-content: start;
     }
-
+    
     .nextBtn {
         width: 4vh;
         height: 4vh;
     }
 
+    .details .imgSideDiv {
+        height: 100%;
+    }
+
     .details .detailsDiv {
         font-size: larger;
         font-weight: bold;
+        height: 100%;
+        padding: 10px;
     }
 
     .details .detailsDiv button {
@@ -218,9 +226,8 @@
         font-size: 15px;
     }
     @media screen and (min-width: 1200px) {
-        .details {
-            display: flex;
-            flex-direction: row;
+        .main h1 {
+            font-size: xx-large;
         }
         .offProducts {
             height: 60vh;

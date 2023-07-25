@@ -18,74 +18,43 @@
   color: white;
 }
 
-.contentDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 10px;
-}
-
-.contentDiv h1 {
-  font-size: 40px;
+.main h1 {
+  font-size: 30px;
   width: 1vh;
+  padding: 20px;
   align-self: start;
+}
+
+.main h2 {
+  font-size: 13px;
   padding: 10px;
 }
 
-.contentDiv h2 {
-  font-size: 15px;
+.visible {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out; /* Customize the transition duration and easing */
 }
 
-.buttonsDiv {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.button {
-  width: 22vh;
-  height: 5vh;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: larger;
-  z-index: 2;
-  border: 2px solid white;
-  background-color: #ffffff00;
-  color: white;
-  transition: transform 0.3s ease;
-}
-
-.button:hover {
-  background-color: white;
-  color: black;
-  transform: scale(1.1);
-}
-
-.button:active {
-  background-color: rgb(124, 124, 124);
-  color: black;
+.hidden {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease-in-out, height 0s linear 0.5s; /* Customize the transition duration and easing */
 }
 
 @media screen and (min-width: 500px) {
-  .contentDiv h1 {
+  .main h1 {
     width: auto;
     font-size: 30px;
+    align-self: center;
   }
   @media screen and (min-width: 650px) {
-    .contentDiv h1 {
+    .main h1 {
       font-size: 40px;
     }
 
-    .contentDiv h2 {
+    .main h2 {
       font-size: 20px;
-    }
-    
-    .button {
-      width: 30vh;
-      height: 6vh;
     }
     @media screen and (min-width: 1500px) {
       .main {

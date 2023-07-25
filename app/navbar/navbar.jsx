@@ -34,7 +34,7 @@ const Navbar = () => {
                 <div className={styles.ulDiv} style={{ display: showMenu ? "flex" : "none" }}>
                     <button onClick={handleLinkClick}>X</button>
                     <ul className={styles.mobileUl} >
-                        <li className={styles.li} style={{ color: "white" }} >
+                        <li className={styles.li} style={{ color: "red" }} >
                             Menu
                         </li>
                         <Link href="/main" >
