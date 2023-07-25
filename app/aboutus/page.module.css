@@ -1,0 +1,28 @@
+.main {
+    width: 100%;
+    min-height: 92vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.504);
+    width: 100%;
+    min-height: 92vh;
+    color: white;
+}
+
+@media screen and (min-width: 700px) {
+    .main {
+        min-height: 90vh;
+    }
+
+    .layout {
+        min-height: 90vh;
+    }
+}

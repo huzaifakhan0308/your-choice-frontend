@@ -56,11 +56,19 @@ const Navbar = () => {
                                 </Link>
                             </>
                             :
-                            <Link href="/contact" >
-                                <li onClick={handleLinkClick}>
-                                    Contact us
-                                </li>
-                            </Link>}
+                            <>
+                                <Link href="/aboutus" >
+                                    <li onClick={handleLinkClick}>
+                                        About Us
+                                    </li>
+                                </Link>
+                                <Link href="/contact" >
+                                    <li onClick={handleLinkClick}>
+                                        Contact
+                                    </li>
+                                </Link>
+                            </>
+                            }
                     </ul>
                 </div>
             </header>
@@ -86,12 +94,20 @@ const Navbar = () => {
                             </li>
                         </Link>
                         </>
-                        : 
-                        <Link href="/contact" >
-                            <li style={{ color: "red" }}>
-                                Contact us
-                            </li>
-                        </Link>}
+                        :
+                        <>
+                            <Link href="/aboutus" >
+                                <li>
+                                    About Us
+                                </li>
+                            </Link>
+                            <Link href="/contact" >
+                                <li style={{ color: "red" }}>
+                                    Contact
+                                </li>
+                            </Link>
+                        </> 
+                        }
                     </ul>
                 </nav>
             </header>
