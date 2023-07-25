@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 import Navbar from '../navbar/navbar';
 import styles from './page.module.css'
 import shoes from '../../assets/shoes.jpg'
-import Link from 'next/link';
+import Card from '../../hooks/card.jsx';
 
 function Page() {
   const products = [
     {
       title: "shoes",
-      img: shoes,
+      img: [shoes],
       price: "2000",
       off: "20",
       colors: ["red", "green"],
@@ -19,7 +19,7 @@ function Page() {
     },
     {
       title: "handbag",
-      img: shoes,
+      img: [shoes],
       price: "1000",
       off: "20",
       colors: ["black", "brown"],
@@ -29,7 +29,7 @@ function Page() {
     },
     {
       title: "jackets",
-      img: shoes,
+      img: [shoes],
       price: "500",
       off: "",
       colors: ["black", "brown"],
@@ -39,7 +39,7 @@ function Page() {
     },
     {
       title: "shoes",
-      img: shoes,
+      img: [shoes],
       price: "2000",
       off: "20",
       colors: ["red", "green"],
@@ -49,7 +49,7 @@ function Page() {
     },
     {
       title: "shoes",
-      img: shoes,
+      img: [shoes],
       price: "2000",
       off: "",
       colors: ["red", "green"],
@@ -59,7 +59,7 @@ function Page() {
     },
     {
       title: "shoes",
-      img: shoes,
+      img: [shoes],
       price: "2000",
       off: "20",
       colors: ["red", "green"],
@@ -69,7 +69,7 @@ function Page() {
     },
     {
       title: "shoes",
-      img: shoes,
+      img: [shoes],
       price: "2000",
       off: "",
       colors: ["red", "green"],
@@ -80,10 +80,6 @@ function Page() {
   ]
 
   const [selectedType, setSelectedType] = useState('shoes');
-
-  const setDetailsId = (id) => {
-    localStorage.setItem("yourChoice-products-id", JSON.stringify(id))
-  }
   return (
     <>
       <Navbar />
@@ -111,24 +107,7 @@ function Page() {
         </div>
         <div className={styles.products}>
           {products.filter((product) => product.type === selectedType).map((e , index) => (
-            <div className={styles.cards} key={index}>
-              <div className={styles.img} style={{ backgroundImage: `url(${e.img.src})` }} ></div>
-              <div className={styles.detailDiv}>
-                <h3>{e.title}</h3>
-                <p>Price: {e.price}Rs</p>
-                {e.off? <p>OFF: {e.off}%</p>: ""}
-                <div>Available Colors: <br /> 
-                  <div className={styles.colorsDiv}>
-                    {e.colors.map((color, index) => (
-                      <div className={styles.circles} style={{ backgroundColor: color }} key={index}></div>
-                    ))}
-                  </div>
-                </div>
-                <Link className={styles.link} href="./details" onClick={() => setDetailsId(e._id)}>
-                  <button>View Product</button>
-                </Link>
-              </div>
-            </div>
+            <Card e={e} index={index}/>
           ))}
         </div>
       </main>

@@ -10,6 +10,7 @@ import menShoes from '../../assets/menShoes.jpeg';
 import shoes from '../../assets/shoes.jpg'
 import leftArrow from '../../public/right-arrow.png'
 import RightArrow from '../../public/left-arrow.png'
+import Card from '../../hooks/card.jsx';
 
 function Page() {
   const products = [
@@ -75,6 +76,27 @@ function Page() {
       gender: "male",
       type: "handbag",
       _id: "4"
+    },
+    {
+      title: "jackets",
+      img: [shoes],
+      price: "500",
+      off: "",
+      colors: ["black", "brown"],
+      gender: "kid",
+      type: "jackets",
+      _id: "5"
+    }
+    ,
+    {
+      title: "jackets",
+      img: [shoes],
+      price: "500",
+      off: "",
+      colors: ["black", "brown"],
+      gender: "kid",
+      type: "jackets",
+      _id: "5"
     },
     {
       title: "jackets",
@@ -171,6 +193,12 @@ function Page() {
                 {e.name}
               </div>
             </Link>
+          ))}
+        </div>
+        <h2>Some Products</h2>
+        <div className={style.someProducts}>
+          {product.slice(0, 15).map((e, index) => (
+            <Card e={e} index={index} key={index} />
           ))}
         </div>
       </main>

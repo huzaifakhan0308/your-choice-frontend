@@ -179,68 +179,95 @@
     margin: 10px;
 }
 
-@media screen and (min-width: 700px) {
-
-    .details {
-        flex-direction: row;
-    }
-
-    .products {
-        height: 40vh;
-        flex-direction: row;
-        overflow-x: auto;
-        overflow-y: hidden;
-        justify-content: start;
-    }
-    
-    .nextBtn {
-        width: 4vh;
-        height: 4vh;
-    }
-
-    .details .imgSideDiv {
-        height: 100%;
-    }
-
-    .details .detailsDiv {
-        font-size: larger;
-        font-weight: bold;
-        height: 100%;
-        padding: 10px;
-    }
-
-    .details .detailsDiv button {
-        width: 24vh;
-        font-size: large;
-        height: 5vh;
-    }
-    
-    .cards {
-        height: 100%;
-        width: auto;
-    }
-
-    .footer {
-        flex-direction: row;
-        height: 10vh;
-        font-size: 15px;
-    }
-    @media screen and (min-width: 1200px) {
-        .main h1 {
-            font-size: xx-large;
-        }
-        .offProducts {
-            height: 60vh;
-        }
-
-        @media screen and (min-width: 1500px) {
-            .products {
-                justify-content: center;
-            }
-            .nextBtn {
-                width: 5vh;
-                height: 5vh;
-            }
-        }
-    }
+.someProducts {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  justify-items: center;
+  width: 90%;
+  margin-top: 20px;
 }
+
+@media screen and (min-width: 450px) {
+
+  .someProducts {
+    grid-template-columns: repeat(2, 1fr);
+    width: 94%;
+  }
+
+  @media screen and (min-width: 700px) {
+
+        .details {
+            flex-direction: row;
+        }
+
+        .products {
+            height: 40vh;
+            flex-direction: row;
+            overflow-x: auto;
+            overflow-y: hidden;
+            justify-content: start;
+        }
+        
+        .nextBtn {
+            width: 4vh;
+            height: 4vh;
+        }
+
+        .details .imgSideDiv {
+            height: 100%;
+        }
+
+        .details .detailsDiv {
+            font-size: larger;
+            font-weight: bold;
+            height: 100%;
+            padding: 10px;
+        }
+
+        .details .detailsDiv button {
+            width: 24vh;
+            font-size: large;
+            height: 5vh;
+        }
+        
+        .cards {
+            height: 100%;
+            width: auto;
+        }
+
+        .footer {
+            flex-direction: row;
+            height: 10vh;
+            font-size: 15px;
+        }
+        @media screen and (min-width: 750px) {
+            .someProducts {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            @media screen and (min-width: 1200px) {
+                .main h1 {
+                    font-size: xx-large;
+                }
+                .offProducts {
+                    height: 60vh;
+                }
+                @media screen and (min-width: 1500px) {
+                    .products {
+                        justify-content: center;
+                    }
+                    .nextBtn {
+                        width: 5vh;
+                        height: 5vh;
+                    }
+                    .someProducts {
+                        grid-template-columns: repeat(4, 1fr);
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+

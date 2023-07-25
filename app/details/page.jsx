@@ -2,17 +2,18 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/navbar';
 import styles from './page.module.css';
+import menShoes from '../../assets/menShoes.jpeg';
 import shoes from '../../assets/shoes.jpg'
 import leftArrow from '../../public/right-arrow.png'
 import RightArrow from '../../public/left-arrow.png'
-import menShoes from '../../assets/menShoes.jpeg';
+import Card from '../../hooks/card.jsx';
 
 function Page() {
   const products = [
     {
       title: "shoes",
       img: [shoes, menShoes, shoes, menShoes],
-      price: "2000",
+      price: "1000",
       off: "20",
       colors: ["red", "green"],
       gender: "female",
@@ -56,7 +57,7 @@ function Page() {
     {
       title: "shoes",
       img: [shoes, shoes, shoes, shoes,],
-      price: "2000",
+      price: "1000",
       off: "20",
       colors: ["red", "green"],
       gender: "female",
@@ -101,6 +102,23 @@ function Page() {
     }
   };
 
+  const handlePurchase = () => {
+
+    if (!selectedColor || !selectedSize) {
+      alert("Please select color and size before making a purchase.");
+      return;
+    }
+
+    const purchaseDetails = {
+      productId: id,
+      color: selectedColor,
+      size: selectedSize,
+    };
+
+    localStorage.setItem("yourChoice-purchase-details", JSON.stringify(purchaseDetails));
+    window.location.href = "/buyProduct";
+  };
+
   return (
     <>
         <Navbar />
@@ -115,14 +133,12 @@ function Page() {
           >
               <div className={styles.card} key={index}>
                 <div className={styles.imgSideDiv}>
-                    {
-                    <div
-                      className={styles.img}
-                      style={{
-                        backgroundImage: `url(${e.img[currentImageIndex].src})`
-                      }}
-                    ></div>
-                    }
+                  <div
+                    className={styles.img}
+                    style={{
+                      backgroundImage: `url(${e.img[currentImageIndex].src})`
+                    }}
+                  ></div>
                   <div className={styles.buttonsContainer}>
                     <button onClick={handleBackImage} disabled={currentImageIndex === 0}>
                       <img src={RightArrow.src} alt="" />
@@ -134,7 +150,7 @@ function Page() {
                 </div>
                 <div className={styles.contentDiv}>
                   <h2>{e.title}</h2>
-                  <p>Price: {e.price}Rs</p>
+                  <p>Rs: {e.price}</p>
                   {e.off?
                     <p>Discount: {e.off}%</p>
                     :
@@ -173,14 +189,21 @@ function Page() {
                       </div>
                     </>
                   : ""}
-                  <button className={styles.BuyBtn}>Buy Now</button>
+                <button className={styles.BuyBtn} onClick={handlePurchase}>Buy Now</button>
                 </div>
               </div>
           </div>
         ))}
-        <h2>More</h2>
-        <div className="">
-            more products Here
+        <h2>Related Products</h2>
+        <div className={styles.someProducts}>
+          {products
+            .filter((product) => product._id !== id)
+            .filter((product) => product.gender === products.find((p) => p._id === id)?.gender)
+            .filter((product) => product.type === products.find((p) => p._id === id)?.type)
+            .slice(0, 15)
+            .map((e, index) => (
+              <Card e={e} index={index} key={index} />
+            ))}
         </div>
       </div>
       <footer className={styles.footer}>

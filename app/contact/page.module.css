@@ -1,0 +1,13 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 92vh;
+}
+
+@media screen and (min-width: 700px) {
+    .main {
+        min-height: 90vh;
+    }
+}

@@ -1,0 +1,6 @@
+.details div {
+    width: 20vh;
+    height: 20vh;
+    background-position: center;
+    background-size: cover;
+}
