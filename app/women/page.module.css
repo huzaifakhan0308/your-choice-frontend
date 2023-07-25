@@ -1,0 +1,152 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.container h1 {
+  padding: 10px;
+  font-size: small;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.menu button {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  margin: 10px;
+  font-size: large;
+  cursor: pointer;
+}
+
+.menu button.selected {
+  border-bottom: 2px solid red;
+  color: red;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  justify-items: center;
+  width: 90%;
+  margin-top: 20px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  aspect-ratio: 1/1.3;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cards:hover {
+  transform: scale(1.05);
+}
+
+.img {
+  width: 100%;
+  aspect-ratio: 1/0.8;
+  background-position: center;
+  background-size: cover;
+}
+
+.detailDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.068);
+  width: 100%;
+  aspect-ratio: 1/0.5;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.colorsDiv {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.circles {
+  width: 3vh;
+  height: 3vh;
+  border-radius: 50%;
+  margin: 2px;
+}
+
+.link {
+  width: 100%;
+}
+
+.detailDiv button {
+  width: 100%;
+  aspect-ratio: 1/0.1;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
+
+.detailDiv button:hover {
+  background-color: rgba(0, 0, 0, 0);
+  color: black;
+}
+
+.detailDiv button:active {
+  background-color: rgba(0, 0, 0, 0.771);
+  color: white;
+}
+
+.footer {
+    min-height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    border-top: 1px solid black;
+    font-size: small;
+    padding: 10px;
+    margin-top: 2vh;
+}
+
+.footer span {
+    font-weight: bold;
+    margin: 10px;
+}
+
+@media screen and (min-width: 550px) {
+  .container h1 {
+    font-size: x-large;
+  }
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+    width: 94%;
+  }
+
+  .footer {
+        flex-direction: row;
+        height: 10vh;
+        font-size: 15px;
+  }
+  @media screen and (min-width: 850px) {
+    .products {
+        grid-template-columns: repeat(3, 1fr);
+    }
+  }
+    @media screen and (min-width: 1500px) {
+        .products {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}

@@ -88,7 +88,7 @@ function Page() {
     <>
       <Navbar />
       <main className={styles.container}>
-        <h1>Explore our ALL Products Page – Your your-choice-shop for men, women, and kids products, carefully curated for your convenience</h1>
+        <h1>Exquisite Selection: Shop Now for Premium Men's, Women's, and Kids' Products!</h1>
         <div className={styles.menu}>
           <button
             className={selectedType === 'shoes' ? styles.selected : ''}
