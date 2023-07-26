@@ -200,7 +200,7 @@ function Page() {
             .filter((product) => product._id !== id)
             .filter((product) => product.gender === products.find((p) => p._id === id)?.gender)
             .filter((product) => product.type === products.find((p) => p._id === id)?.type)
-            .slice(0, 15)
+            .slice(0, 4)
             .map((e, index) => (
               <Card e={e} index={index} key={index} />
             ))}

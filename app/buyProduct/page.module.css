@@ -1,6 +1,47 @@
-.details div {
-    width: 20vh;
-    height: 20vh;
-    background-position: center;
-    background-size: cover;
+/* .container {
+    display: flex;
+    width: 100%;
+    min-height: 92vh;
 }
+
+.container form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border: 2px solid red;
+    min-height: 92vh;
+    padding: 10px;
+}
+
+.container form input {
+    width: 100%;
+    height: 8vh;
+    padding: 10px;
+}
+
+.detailsDiv {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid red;
+    min-height: 92vh;
+}
+
+@media screen and (min-width: 700px) {
+    .container {
+        min-height: 90vh;
+    }
+
+    .container form {
+        min-height: 90vh;
+    }
+
+    .detailsDiv {
+        min-height: 90vh;
+    }
+} */

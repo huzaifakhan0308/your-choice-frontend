@@ -75,8 +75,15 @@ function Contact() {
     }
   ]
 
-
-  const [details, setDetails] = useState("")
+  const [details, setDetails] = useState({
+    name: '',
+    address: '',
+    phoneNumber: '',
+    email: '',
+    productId: '',
+    color: '',
+    size: '',
+  });
 
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem("yourChoice-purchase-details"))
@@ -87,17 +94,21 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here, you can save the form details to your backend or perform any other actions you want.
-    // For example, you can send an API request to save the customer's information to your database.
+    if (!details.productId) {
+      alert("You need to select a product first.");
+      return;
+    }
     console.log(details);
-    // Clear the form after submission
-    // setDetails({
-    //   name: '',
-    //   address: '',
-    //   phoneNumber: '',
-    //   email: '',
-    // });
-    window.location.reload()
+    localStorage.setItem("yourChoice-purchase-details", JSON.stringify(""));
+    setDetails({
+      name: '',
+      address: '',
+      phoneNumber: '',
+      email: '',
+      productId: '',
+      color: '',
+      size: '',
+    })
   };
 
   const handleChange = (e) => {
@@ -111,62 +122,63 @@ function Contact() {
   return (
       <>
         <Navbar />
-      <div>
-        <h2>Contact Information</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={details.name}
-              onChange={handleChange}
-              required
-            />
+      <div className={styles.container}>
+        <form class="row g-3">
+          <div class="col-md-6">
+            <label for="inputFirstName" class="form-label">First name</label>
+            <input type="text" class="form-control" id="inputEmail4"/>
           </div>
-          <div>
-            <label htmlFor="address">Address:</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              value={details.address}
-              onChange={handleChange}
-              required
-            />
+          <div class="col-md-6">
+            <label for="inputLastName" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="inputPassword4"/>
           </div>
-          <div>
-            <label htmlFor="phoneNumber">Phone Number:</label>
-            <input
-              type="tel"
-              id="phoneNumber"
-              name="phoneNumber"
-              value={details.phoneNumber}
-              onChange={handleChange}
-              required
-            />
+          <div class="col-12">
+            <label for="inputAddress" class="form-label">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main Street"/>
           </div>
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={details.email}
-              onChange={handleChange}
-              required
-            />
+          <div class="col-12">
+            <label for="inputAddress2" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="inputEmail4" placeholder="+92"/>
           </div>
-          <button type="submit">Submit</button>
+          <div class="col-12">
+            <label for="inputAddress2" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputPhoneNumber" placeholder="abc@example.com"/>
+          </div>
+          <div class="col-md-6">
+            <label for="inputCity" class="form-label">City</label>
+            <input type="text" class="form-control" id="inputCity"/>
+          </div>
+          <div class="col-md-4">
+            <label for="inputState" class="form-label">State</label>
+            <select id="inputState" class="form-select">
+              <option selected>Choose...</option>
+              <option>KPK</option>
+              <option>Sindh</option>
+              <option>Punjab</option>
+              <option>Balochistan</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="inputZip" class="form-label">Zip</label>
+            <input type="text" class="form-control" id="inputZip"/>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </div>
         </form>
-      </div>
-      <div className={styles.details}>
-        <div style={{ backgroundImage: `url(${details? products[details.productId].img[0].src : ""})`}}></div>
-        <h2>{details ? products[details.productId].title : ""}</h2>
-        <p>Rs: {details ? products[details.productId].price : ""}</p>
-        <p>Color:{details? details.color : ""}</p>
-        <p>Size:{details ? details.size : ""}</p>
+        <div className={styles.detailsDiv}>
+          {!details.productId ? (
+            <p>You need to select a product first.</p>
+          ) : (
+            <>
+              <div style={{ backgroundImage: `url(${products.find((product) => product._id === details.productId)?.img[0].src || ""})` }}></div>
+              <h2>{details ? products.find((product) => product._id === details.productId)?.title : ""}</h2>
+              <p>Rs: {details ? products.find((product) => product._id === details.productId)?.price : ""}</p>
+              <p>Color: {details ? details.color : ""}</p>
+              <p>Size: {details ? details.size : ""}</p>
+            </>
+          )}
+        </div>
       </div>
       </>
   )
