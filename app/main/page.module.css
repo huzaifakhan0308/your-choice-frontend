@@ -16,7 +16,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 55vh;
+    height: 56vh;
     background-position: center;
     background-size: cover;
 }
@@ -57,14 +57,13 @@
 
 .details .imgSideDiv {
     width: 100%;
-    height: 55%;
+    height: 54%;
 }
 
-.details .imgSideDiv div {
+.details .imgSideDiv img {
     width: 100%;
     height: 100%;
-    background-position: center;
-    background-size: cover;
+    object-fit: cover;
 }
 
 .details .detailsDiv {
@@ -72,21 +71,24 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    height: 45%;
+    height: 46%;
     padding-top: 10px;
     font-size: smaller;
 }
 
+.details .detailsDiv p {
+    margin: 0%;
+}
+
 .colorsDiv {
   display: flex;
-  margin-bottom: 5px;
 }
 
 .circles {
-  width: 3vh;
-  height: 3vh;
+  width: 3.5vh;
+  height: 3.5vh;
   border-radius: 50%;
-  margin: 2px;
+  margin: 0 2px;
 }
 
 .details .detailsDiv :link {
@@ -96,7 +98,7 @@
 .details .detailsDiv button {
   width: 18vh;
   height: 4vh;
-  margin: 5px;
+  margin: 10px 5px;
   border-radius: 5px;
   cursor: pointer;
   font-size: small;
@@ -189,6 +191,9 @@
 }
 
 @media screen and (min-width: 450px) {
+    .offProducts {
+        height: 60vh;
+    }
 
   .someProducts {
     grid-template-columns: repeat(2, 1fr);
@@ -219,10 +224,14 @@
         }
 
         .details .detailsDiv {
-            font-size: larger;
             font-weight: bold;
             height: 100%;
             padding: 10px;
+        }
+
+        .circles {
+            width: 4vh;
+            height: 4vh;
         }
 
         .details .detailsDiv button {
@@ -251,6 +260,9 @@
                 }
                 .offProducts {
                     height: 60vh;
+                }
+                .details .detailsDiv {
+                    font-size: larger;
                 }
                 @media screen and (min-width: 1500px) {
                     .products {

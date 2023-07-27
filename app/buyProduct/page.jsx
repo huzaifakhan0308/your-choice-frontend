@@ -5,6 +5,7 @@ import styles from './page.module.css'
 import menShoes from '../../assets/menShoes.jpeg';
 import shoes from '../../assets/shoes.jpg'
 import done from '../../public/done.png'
+import Link from 'next/link';
 
 function Contact() {
   const products = [
@@ -98,7 +99,7 @@ function Contact() {
   const zipRef = useRef();
 
   const [quantity, setQuantity] = useState(1);
-  const [successfullPage, setSuccessfullPage] = useState(true);
+  const [successfullPage, setSuccessfullPage] = useState(false);
   const [enoughQuantity, setEnoughQuantity] = useState(false);
 
   useEffect(() => {
@@ -161,13 +162,15 @@ function Contact() {
             <>
               {successfullPage ?
                 <div className={styles.successfullPage}>
-                  <img src={done.src} alt="" />
-                  <p>Hey {firstNameRef.current && firstNameRef.current.value ? firstNameRef.current.value + " " + lastNameRef.current.value : ""},</p>
+                  <p className={styles.hey}>Hey {firstNameRef.current && firstNameRef.current.value ? firstNameRef.current.value + " " + lastNameRef.current.value : ""},</p>
                   <h2>Your Order is Confirmed!</h2>
-                  <p>
+                  <img src={done.src} alt="" />
+                  <p className={styles.info}>
                     Thank you for placing your order. We will inform you very soon with further updates once your order is processed.
                   </p>
-                  <button>Go to Home Page</button>
+                  <Link href={"/main"}>
+                    <button>Go to Home Page</button>
+                  </Link>
                 </div>
                 :
                 <p style={{ marginTop: "10vh" }} >Oops! something went wrong wait for few seconds or select any product again.</p>

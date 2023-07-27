@@ -133,12 +133,7 @@ function Page() {
           >
               <div className={styles.card} key={index}>
                 <div className={styles.imgSideDiv}>
-                  <div
-                    className={styles.img}
-                    style={{
-                      backgroundImage: `url(${e.img[currentImageIndex].src})`
-                    }}
-                  ></div>
+                  <img className={styles.img} src={e.img[currentImageIndex].src} alt="" />
                   <div className={styles.buttonsContainer}>
                     <button onClick={handleBackImage} disabled={currentImageIndex === 0}>
                       <img src={RightArrow.src} alt="" />
@@ -170,31 +165,27 @@ function Page() {
                       </button>
                     ))}
                   </div>
-                  {e.sizes?
-                    <>
-                      <h4>Select Available Sizes:</h4>
-                      <div className={styles.sizesButtons}>
-                        {e.sizes.map((size) => (
-                          <button
-                            key={size}
-                            onClick={() => setSelectedSize(size)}
-                            style={{
-                              backgroundColor: selectedSize === size ? 'black' : 'transparent',
-                              color: selectedSize === size ? 'white' : 'black',
-                            }}
-                          >
-                            {size}
-                          </button>
-                        ))}
-                      </div>
-                    </>
-                  : ""}
-                <button className={styles.BuyBtn} onClick={handlePurchase}>Buy Now</button>
+                  <h4>Select Available Sizes:</h4>
+                  <div className={styles.sizesButtons}>
+                    {e.sizes.map((size) => (
+                      <button
+                        key={size}
+                        onClick={() => setSelectedSize(size)}
+                        style={{
+                          backgroundColor: selectedSize === size ? 'black' : 'transparent',
+                          color: selectedSize === size ? 'white' : 'black',
+                        }}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                  <button className={styles.BuyBtn} onClick={handlePurchase}>Buy Now</button>
                 </div>
               </div>
           </div>
         ))}
-        <h2>Related Products</h2>
+        <h2 style={{margin: "20px"}} >Related Products</h2>
         <div className={styles.someProducts}>
           {products
             .filter((product) => product._id !== id)

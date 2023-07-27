@@ -162,7 +162,7 @@ function Page() {
             </button>
             <div className={style.details}>
               <div className={style.imgSideDiv}>
-                <div style={{ backgroundImage: `url(${product[currentProductIndex].img[0].src})` }}></div>
+                <img src={product[currentProductIndex].img[0].src} alt="" />
               </div>
               <div className={style.detailsDiv}>
                 <h2>{product[currentProductIndex].title}</h2>

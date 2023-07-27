@@ -37,6 +37,7 @@ function Contact() {
                   We value your feedback and welcome any queries or concerns you may have.
                   Our dedicated customer support team is ready to assist you.
                 </p>
+                <p>Embrace style, embrace confidence with Your-Choice Shop - your go-to destination for chic shoes, trendy jackets, and fashionable handbags for every member of your family. Thank you for visiting our online shopping website!</p>
               </div>
             </div>
           </>

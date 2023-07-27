@@ -5,10 +5,13 @@
     width: 100%;
 }
 
+.productContainer h1 {
+    margin: 20px;
+}
+
 .product {
     width: 90%;
     height: 80vh;
-    margin-top: 20px;
     border-radius: 5px;
     overflow: hidden;
     background-position: center;
@@ -37,12 +40,20 @@
 .img {
   width: 100%;
   height: 100%;
-  background-position: center;
-  background-size: cover;
+  object-fit: cover;
   transition: 0.1s ease-in-out;
+  padding-top: 20px;
 }
 
+.buttonsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .buttonsContainer button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 2.5vh;
     height: 2.5vh;
     background-color: rgba(0, 0, 0, 0);
@@ -62,20 +73,29 @@
     justify-content: center;
     height: 45%;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
+}
+
+.contentDiv p {
+    margin: 0%;
+}
+
+.contentDiv h4 {
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .colorButtons button {
-    width: 3vh;
-    height: 3vh;
+    width: 4vh;
+    height: 4vh;
     border-radius: 50%;
     margin: 3px;
     cursor: pointer;
 }
 
 .sizesButtons button {
-    width: 3vh;
-    height: 3vh;
+    width: 4vh;
+    height: 4vh;
     border: 1px solid rgba(0, 0, 0, 0.611);
     margin: 2px;
     cursor: pointer;
@@ -150,14 +170,6 @@
         padding: 10px;
         height: 40%;
       }
-      .colorButtons button {
-          height: 4vh;
-          width: 4vh;
-      }
-      .sizesButtons button {
-          height: 4vh;
-          width: 4vh;
-      }
       .BuyBtn {
         width: 30vh;
         height: 6vh;
@@ -173,6 +185,9 @@
                 }
                 .imgSideDiv {
                     height: 100%;
+                }
+                .img {
+                    padding: 0%;
                 }
                 .contentDiv {
                     padding: 20px;
