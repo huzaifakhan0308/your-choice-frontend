@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Navbar from '../navbar/navbar'
 import styles from './page.module.css'
 import menShoes from '../../assets/menShoes.jpeg';
 import shoes from '../../assets/shoes.jpg'
+import done from '../../public/done.png'
 
 function Contact() {
   const products = [
@@ -16,7 +17,8 @@ function Contact() {
       gender: "female",
       type: "shoes",
       _id: "1",
-      sizes: [7, 8, 9, 10, 11]
+      sizes: [7, 8, 9, 10, 11],
+      quantity: 3
     },
     {
       title: "handbag",
@@ -27,7 +29,8 @@ function Contact() {
       gender: "male",
       type: "handbag",
       _id: "2",
-      sizes: [7, 8, 9, 10, 11]
+      sizes: [7, 8, 9, 10, 11],
+      quantity: 3
     },
     {
       title: "jackets",
@@ -38,7 +41,8 @@ function Contact() {
       gender: "kid",
       type: "jackets",
       _id: "3",
-      sizes: [3, 4, 5, 6, 7]
+      sizes: [3, 4, 5, 6, 7],
+      quantity: 4
     },
     {
       title: "shoes",
@@ -49,7 +53,8 @@ function Contact() {
       gender: "female",
       type: "shoes",
       _id: "4",
-      sizes: [7, 8, 9, 10, 11]
+      sizes: [7, 8, 9, 10, 11],
+      quantity: 5
     },
     {
       title: "shoes",
@@ -60,7 +65,8 @@ function Contact() {
       gender: "female",
       type: "shoes",
       _id: "5",
-      sizes: [7, 8, 9, 10, 11]
+      sizes: [7, 8, 9, 10, 11],
+      quantity: 2
     },
     {
       title: "shoes",
@@ -71,7 +77,8 @@ function Contact() {
       gender: "female",
       type: "shoes",
       _id: "6",
-      sizes: [7, 8, 9, 10, 11]
+      sizes: [7, 8, 9, 10, 11],
+      quantity: 3
     }
   ]
 
@@ -81,16 +88,18 @@ function Contact() {
     size: '',
   });
 
-  const firstNameRef = React.useRef();
-  const lastNameRef = React.useRef();
-  const addressRef = React.useRef();
-  const phoneRef = React.useRef();
-  const emailRef = React.useRef();
-  const cityRef = React.useRef();
-  const stateRef = React.useRef();
-  const zipRef = React.useRef();
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const addressRef = useRef();
+  const phoneRef = useRef();
+  const emailRef = useRef();
+  const cityRef = useRef();
+  const stateRef = useRef();
+  const zipRef = useRef();
 
   const [quantity, setQuantity] = useState(1);
+  const [successfullPage, setSuccessfullPage] = useState(true);
+  const [enoughQuantity, setEnoughQuantity] = useState(false);
 
   useEffect(() => {
     let data = JSON.parse(localStorage.getItem("yourChoice-purchase-details"))
@@ -121,6 +130,7 @@ function Contact() {
     };
 
     console.log("Form Values:", formData);
+    setSuccessfullPage(true)
 
     localStorage.setItem("yourChoice-purchase-details", JSON.stringify(""));
     setDetails({
@@ -131,10 +141,15 @@ function Contact() {
   };
 
   const increaseQuantity = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    if (quantity === products.find((product) => product._id === details.productId)?.quantity) {
+      setEnoughQuantity(true)
+    }else{
+      setQuantity(prevQuantity => prevQuantity + 1);
+    }
   };
 
   const decreaseQuantity = () => {
+    setEnoughQuantity(false)
     setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1));
   };
 
@@ -143,11 +158,25 @@ function Contact() {
         <Navbar />
       <div className={styles.container}>
           {!details.productId ? (
-            <p>You need to select a product first.</p>
+            <>
+              {successfullPage ?
+                <div className={styles.successfullPage}>
+                  <img src={done.src} alt="" />
+                  <p>Hey {firstNameRef.current && firstNameRef.current.value ? firstNameRef.current.value + " " + lastNameRef.current.value : ""},</p>
+                  <h2>Your Order is Confirmed!</h2>
+                  <p>
+                    Thank you for placing your order. We will inform you very soon with further updates once your order is processed.
+                  </p>
+                  <button>Go to Home Page</button>
+                </div>
+                :
+                <p style={{ marginTop: "10vh" }} >Oops! something went wrong wait for few seconds or select any product again.</p>
+              }
+            </>
           ) : (
             <>
               <form className="row g-3" onSubmit={handleSubmit}>
-                <h1>Your <span style={{ color: "red"}}>Choice</span> Shop!</h1>
+                  <h1>Thank you for choosing Your <span style={{ color: "red"}}>Choice</span> Shop!</h1>
                 <div className="col-md-6">
                   <label className="form-label">First name</label>
                   <input type="text" className="form-control" id="inputEmail4" ref={firstNameRef} required />
@@ -195,7 +224,7 @@ function Contact() {
                 <img src={products.find((product) => product._id === details.productId)?.img[0].src || ""} alt="" />
                 <h2>{details ? products.find((product) => product._id === details.productId)?.title : ""}</h2>
                 <p>Total Rs: {details ? products.find((product) => product._id === details.productId)?.price * quantity : ""}</p>
-                <div className={styles.colorDiv} style={{ color: "red"}} >Selected Color :<br />
+                <div className={styles.colorDiv} style={{ color: "red"}} >Selected Color:<br />
                   <div style={{ backgroundColor: details ? details.color : "" }}></div>
                 </div>        
                 <p className={styles.selectedSize}>Selected Size: <span>{details ? details.size : ""}</span></p>
@@ -206,7 +235,16 @@ function Contact() {
                       <h4>{quantity}</h4>
                     <button onClick={increaseQuantity}>+</button>
                   </div>
+                    <p 
+                      style={{ display: enoughQuantity ? "block" : "none", fontWeight: 'lighter', color: "red" }} >
+                        we have only  <span style={{ fontWeight: 'bolder' }}>
+                        {products.find((product) => product._id === details.productId)?.quantity}</span> items of this type
+                    </p>
                 </div>
+                <p className={styles.delivery}>
+                  Free delivery is offered for locations within the Nowshera to Peshawar range<br />
+                  For other cities, delivery charges will apply, we will notify you on the provided contact number after receiving your order. <br />
+                </p>
               </div>
             </>
           )}
