@@ -163,7 +163,7 @@ function Page() {
                         key={color}
                         onClick={() => setSelectedColor(color)}
                         style={{
-                          border: selectedColor === color ? "2px solid black" : 'none',
+                          border: selectedColor === color ? "2px solid rgba(255, 255, 255, 0.900)" : 'none',
                           backgroundColor: color
                         }}
                       >
