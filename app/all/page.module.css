@@ -38,23 +38,6 @@
   margin-top: 20px;
 }
 
-.footer {
-    min-height: 8vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-    border-top: 1px solid black;
-    font-size: small;
-    padding: 10px;
-    margin-top: 2vh;
-}
-
-.footer span {
-    font-weight: bold;
-    margin: 10px;
-}
-
 @media screen and (min-width: 550px) {
   .container h1 {
     font-size: x-large;
@@ -63,20 +46,19 @@
     grid-template-columns: repeat(2, 1fr);
     width: 94%;
   }
-
-  .footer {
-        flex-direction: row;
-        height: 10vh;
-        font-size: 15px;
-  }
   @media screen and (min-width: 850px) {
     .products {
         grid-template-columns: repeat(3, 1fr);
     }
-  }
     @media screen and (min-width: 1500px) {
         .products {
             grid-template-columns: repeat(4, 1fr);
         }
+        @media screen and (min-width: 1800px) {
+            .products {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
     }
+  }
 }

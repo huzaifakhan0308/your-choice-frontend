@@ -164,23 +164,6 @@
     background-color: rgba(0, 0, 0, 0.429);
 }
 
-.footer {
-    min-height: 8vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-    border-top: 1px solid black;
-    font-size: small;
-    padding: 10px;
-    margin-top: 2vh;
-}
-
-.footer span {
-    font-weight: bold;
-    margin: 10px;
-}
-
 .someProducts {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -244,12 +227,6 @@
             height: 100%;
             width: auto;
         }
-
-        .footer {
-            flex-direction: row;
-            height: 10vh;
-            font-size: 15px;
-        }
         @media screen and (min-width: 750px) {
             .someProducts {
                 grid-template-columns: repeat(3, 1fr);
@@ -274,6 +251,11 @@
                     }
                     .someProducts {
                         grid-template-columns: repeat(4, 1fr);
+                    }
+                    @media screen and (min-width: 1800px) {
+                        .someProducts {
+                            grid-template-columns: repeat(5, 1fr);
+                        }
                     }
                 }
             }

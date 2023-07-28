@@ -11,6 +11,7 @@ import shoes from '../../assets/shoes.jpg'
 import leftArrow from '../../public/right-arrow.png'
 import RightArrow from '../../public/left-arrow.png'
 import Card from '../../hooks/card.jsx';
+import Footer from '../../hooks/footer.jsx';
 
 function Page() {
   const products = [
@@ -96,7 +97,7 @@ function Page() {
       colors: ["black", "brown"],
       gender: "kid",
       type: "jackets",
-      _id: "5"
+      _id: "6"
     },
     {
       title: "jackets",
@@ -106,7 +107,7 @@ function Page() {
       colors: ["black", "brown"],
       gender: "kid",
       type: "jackets",
-      _id: "5"
+      _id: "7"
     }
   ]
 
@@ -202,15 +203,7 @@ function Page() {
           ))}
         </div>
       </main>
-      <footer className={style.footer}>
-        © 2023 YourChoiceShopping Services (Pvt) Ltd. All Rights Reserved.
-        <span>
-          Made by Huzaifa Khan <br />
-          <a href='mailto:huzaifa031252khan@gmail.com' style={{ color: "red"}}>
-            huzaifa031252khan@gmail.com
-          </a>
-        </span>
-      </footer>
+      <Footer />
     </>
   )
 }

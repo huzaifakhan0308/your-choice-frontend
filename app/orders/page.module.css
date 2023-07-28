@@ -1,0 +1,93 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.orders {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 45vh;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.orders div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.orders div p {
+    margin: 4px;
+}
+
+.orders .buttonDiv button {
+    margin: 4px;
+    width: 25vh;
+    height: 4.5vh;
+    background-color: transparent;
+    border-radius: 3px;
+}
+
+.orders .buttonDiv button:hover {
+    background-color: black;
+    color: white;
+}
+
+.orders img {
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.orders .buttonDiv .confirmed {
+    background-color: green;
+    border: green;
+    color: white;
+}
+
+.orders .buttonDiv .confirmed:hover {
+    background-color: green;
+    border: green;
+    color: white;
+}
+
+@media screen and (min-width: 768px) {
+    .orders {
+        flex-direction: row;
+        min-height: 30vh;
+        width: 95%;
+        font-size: x-small;
+    }
+
+    .orders div {
+        padding: 10px;
+    }
+
+    .orders img {
+        height: 30vh;
+    }
+
+    .orders .buttonDiv {
+        width: auto;
+    }
+    @media screen and (min-width: 1024px) {
+        .orders {
+            font-size: 15px;
+            width: 90%;
+        }
+
+        .orders .buttonDiv button {
+            width: 30vh;
+            height: 5vh;
+        }
+    }
+}

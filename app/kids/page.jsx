@@ -4,6 +4,7 @@ import Navbar from '../navbar/navbar';
 import styles from './page.module.css'
 import shoes from '../../assets/shoes.jpg'
 import Card from '../../hooks/card.jsx';
+import Footer from '../../hooks/footer.jsx';
 
 function Page() {
   const products = [
@@ -99,15 +100,7 @@ function Page() {
           ))}
         </div>
       </main>
-      <footer className={styles.footer}>
-        © 2023 YourChoiceShopping Services (Pvt) Ltd. All Rights Reserved.
-        <span>
-          Made by Huzaifa Khan <br />
-          <a href='mailto:huzaifa031252khan@gmail.com' style={{ color: "red" }}>
-            huzaifa031252khan@gmail.com
-          </a>
-        </span>
-      </footer>
+      <Footer/>
     </>
   )
 }

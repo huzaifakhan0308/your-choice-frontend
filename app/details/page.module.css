@@ -188,6 +188,7 @@
                 }
                 .img {
                     padding: 0%;
+                    padding-top: 30px;
                 }
                 .contentDiv {
                     padding: 20px;
@@ -208,6 +209,11 @@
                 @media screen and (min-width: 1500px) {
                     .someProducts {
                         grid-template-columns: repeat(4, 1fr);
+                    }
+                    @media screen and (min-width: 1800px) {
+                        .someProducts {
+                            grid-template-columns: repeat(5, 1fr);
+                        }
                     }
                 }
             }

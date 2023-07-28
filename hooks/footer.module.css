@@ -1,0 +1,32 @@
+.footer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    border-top: 1px solid black;
+    font-size: small;
+    min-height: 8vh;
+    padding: 10px;
+    margin-top: 2vh;
+}
+
+.footer span {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 700px) {
+    .footer {
+        flex-direction: row;
+        align-items: center;
+        min-height: 10vh;
+        font-size: 15px;
+    }
+
+    .footer span {
+        margin: 5px;
+    }
+}
