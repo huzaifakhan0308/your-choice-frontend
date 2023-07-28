@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.container h1 {
+  padding: 10px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  justify-items: center;
+  width: 90%;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 550px) {
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+    width: 94%;
+  }
+  @media screen and (min-width: 850px) {
+    .products {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (min-width: 1500px) {
+        .products {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @media screen and (min-width: 1800px) {
+            .products {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+    }
+  }
+}

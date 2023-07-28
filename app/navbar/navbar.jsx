@@ -4,6 +4,7 @@ import styles from './navbar.module.css';
 import Link from "next/link";
 import logo from '../../public/your-choice-logo.png'
 import menuIcon from '../../public/menuIcon.png'
+import favorites from '../../public/favorites.png'
 
 const Navbar = () => {
     const [boolean, setBoolean] = useState(false)
@@ -67,6 +68,11 @@ const Navbar = () => {
                                         Contact
                                     </li>
                                 </Link>
+                                <Link href="/favorites" >
+                                    <li onClick={handleLinkClick}>
+                                        Favorites
+                                    </li>
+                                </Link>
                             </>
                             }
                     </ul>
@@ -76,38 +82,43 @@ const Navbar = () => {
                 <nav className={styles.navbar}>
                     <img src={logo.src} alt="logo" className={styles.logo} />
                     <ul className={styles.ul} >
-                        <Link href="/main" >
-                            <li>
-                                Home
-                            </li>
-                        </Link>
-                        {boolean?
-                        <>
-                        <Link href="/orders" >
-                            <li>
-                                Orders
-                            </li>
-                        </Link>
-                        <Link href="/products" >
-                            <li style={{ color: "red" }}>
-                                My products
-                            </li>
-                        </Link>
-                        </>
-                        :
-                        <>
-                            <Link href="/aboutus" >
+                        <div className="">
+                            <Link href="/main" >
                                 <li>
-                                    About Us
+                                    Home
                                 </li>
                             </Link>
-                            <Link href="/contact" >
+                            {boolean?
+                            <>
+                            <Link href="/orders" >
+                                <li>
+                                    Orders
+                                </li>
+                            </Link>
+                            <Link href="/products" >
                                 <li style={{ color: "red" }}>
-                                    Contact
+                                    My products
                                 </li>
                             </Link>
-                        </> 
-                        }
+                            </>
+                            :
+                            <>
+                                <Link href="/aboutus" >
+                                    <li>
+                                        About Us
+                                    </li>
+                                </Link>
+                                <Link href="/contact" >
+                                    <li style={{ color: "red" }}>
+                                        Contact
+                                    </li>
+                                </Link>
+                            </> 
+                            }
+                        </div>
+                        <Link href="/favorites" >
+                            <img src={favorites.src} alt="" />
+                        </Link>
                     </ul>
                 </nav>
             </header>
