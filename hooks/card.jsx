@@ -3,36 +3,31 @@ import styles from './card.module.css'
 import Link from 'next/link'
 import blackHeart from '../public/blackHeart.png'
 import redHeart from '../public/redHeart.png'
+import { localStorageKeys } from '../common/strings'
 
-function Card({e, index}) {
-    const [favorites, setFavorites] = useState([])
+function Card({ e, index, favorites, setFavorites }) {
+    
 
     const setDetailsId = (id) => {
-        localStorage.setItem("yourChoice-products-id", JSON.stringify(id))
+        localStorage.setItem(localStorageKeys.favouriteKey, JSON.stringify(id))
     }
-
-    useEffect(() => {
-        const storedFavorites = JSON.parse(localStorage.getItem('yourChoice-favorite'));
-        if (Array.isArray(storedFavorites)) {
-            setFavorites(storedFavorites);
-        }
-    }, []);
-
     
     const handleFavoriteToggle = (id) => {
         if (isFavorite(id)) {
             const updatedFavorites = favorites.filter((favId) => favId !== id);
-            localStorage.setItem('yourChoice-favorite', JSON.stringify(updatedFavorites));
+            localStorage.setItem(localStorageKeys.favouriteKey, JSON.stringify(updatedFavorites));
+            console.log('updatedFavorites: ', updatedFavorites)
             setFavorites(updatedFavorites);
         } else {
             const updatedFavorites = [...favorites, id];
-            localStorage.setItem('yourChoice-favorite', JSON.stringify(updatedFavorites));
+            localStorage.setItem(localStorageKeys.favouriteKey, JSON.stringify(updatedFavorites));
             setFavorites(updatedFavorites);
+            console.log('updatedFavorites: ', updatedFavorites)
         }
-        window.location.reload()
+        // window.location.reload()
     };
 
-    const isFavorite = (id) => favorites.includes(id);
+    const isFavorite = (id) => favorites?.includes(id);
     
   return (
         <div className={styles.cards} key={index}>

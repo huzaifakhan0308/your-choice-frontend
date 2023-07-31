@@ -13,7 +13,7 @@ function Page() {
       img: [shoes],
       price: "2000",
       off: "20",
-      colors: ["red", "green"],
+      colors: ["red", "black"],
       gender: "female",
       type: "shoes",
       _id: "1"

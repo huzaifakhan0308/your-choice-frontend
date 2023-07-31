@@ -38,7 +38,7 @@ const Navbar = () => {
                         <li className={styles.li} style={{ color: "red" }} >
                             Menu
                         </li>
-                        <Link href="/main" >
+                        <Link href="/" >
                             <li onClick={handleLinkClick}>
                                 Home
                             </li>
@@ -83,7 +83,7 @@ const Navbar = () => {
                     <img src={logo.src} alt="logo" className={styles.logo} />
                     <ul className={styles.ul} >
                         <div className="">
-                            <Link href="/main" >
+                            <Link href="/" >
                                 <li>
                                     Home
                                 </li>

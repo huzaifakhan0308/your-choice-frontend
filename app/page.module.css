@@ -1,4 +1,4 @@
-.main {
+.container {
   width: 100%;
   min-height: 100vh;
   position: relative;
@@ -6,7 +6,16 @@
   background-size: cover;
 }
 
-.layout {
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.WelcomePageLayout {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,48 +27,305 @@
   color: white;
 }
 
-.main h1 {
+.container h1 {
   font-size: 30px;
   width: 1vh;
   padding: 20px;
   align-self: start;
 }
 
-.main h2 {
+.container h2 {
   font-size: 13px;
   padding: 10px;
 }
 
-.visible {
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out; /* Customize the transition duration and easing */
-}
-
-.hidden {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  transition: opacity 0.5s ease-in-out, height 0s linear 0.5s; /* Customize the transition duration and easing */
-}
-
 @media screen and (min-width: 500px) {
-  .main h1 {
+  .container h1 {
     width: auto;
     font-size: 30px;
     align-self: center;
   }
   @media screen and (min-width: 650px) {
-    .main h1 {
+    .container h1 {
       font-size: 40px;
     }
 
-    .main h2 {
+    .container h2 {
       font-size: 20px;
     }
     @media screen and (min-width: 1500px) {
-      .main {
+      .container {
         background-position: 0% 0%;
       }
     }
   }
 }
+
+.main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    min-height: 90vh;
+}
+
+.main h1 {
+    font-size: x-large;
+    padding: 10px;
+}
+
+.offProducts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 56vh;
+    background-position: center;
+    background-size: cover;
+}
+
+.layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.365);
+}
+
+.nextBtn {
+    width: 3vh;
+    height: 3vh;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.nextBtn img {
+    height: 100%;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    height: 95%;
+    width: 80%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.472);
+    color: white;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.details .imgSideDiv {
+    width: 100%;
+    height: 54%;
+}
+
+.details .imgSideDiv img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details .detailsDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 46%;
+    padding-top: 10px;
+    font-size: smaller;
+}
+
+.details .detailsDiv p {
+    margin: 0%;
+}
+
+.colorsDiv {
+  display: flex;
+}
+
+.circles {
+  width: 3.5vh;
+  height: 3.5vh;
+  border-radius: 50%;
+  margin: 0 2px;
+}
+
+.details .detailsDiv :link {
+    width: 100%;
+}
+
+.details .detailsDiv button {
+  width: 18vh;
+  height: 4vh;
+  margin: 10px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: small;
+  z-index: 2;
+  border: none;
+  background-color: white;
+  color: black;
+  transition: transform 0.3s ease;
+}
+
+.details .detailsDiv button:hover {
+  background-color: rgba(255, 255, 255, 0);
+  border: 2px solid white;
+  color: white;
+  transform: scale(1.1);
+}
+
+.details .detailsDiv button:active {
+  background-color: white;
+  color: black;
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 30vh;
+    margin: 20px 0;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: 10px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    text-decoration: none;
+    background-position: center;
+    background-size: cover;
+    transition: 0.3s ease-in-out;
+}
+
+.cards:hover {
+    transform: scale(1.05);
+}
+
+.cards .layouts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.541);
+    width: 100%;
+    height: 100%;
+}
+
+.cards .layouts:hover {
+    background-color: rgba(0, 0, 0, 0.429);
+}
+
+.someProducts {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+  justify-items: center;
+  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 12vh;
+}
+
+@media screen and (min-width: 450px) {
+    .offProducts {
+        height: 60vh;
+    }
+
+  .someProducts {
+    grid-template-columns: repeat(2, 1fr);
+    width: 94%;
+  }
+
+  @media screen and (min-width: 700px) {
+
+        .details {
+            flex-direction: row;
+        }
+
+        .products {
+            height: 40vh;
+            flex-direction: row;
+            overflow-x: auto;
+            overflow-y: hidden;
+            justify-content: start;
+        }
+        
+        .nextBtn {
+            width: 4vh;
+            height: 4vh;
+        }
+
+        .details .imgSideDiv {
+            height: 100%;
+        }
+
+        .details .detailsDiv {
+            font-weight: bold;
+            height: 100%;
+            padding: 10px;
+        }
+
+        .circles {
+            width: 4vh;
+            height: 4vh;
+        }
+
+        .details .detailsDiv button {
+            width: 24vh;
+            font-size: large;
+            height: 5vh;
+        }
+        
+        .cards {
+            height: 100%;
+            width: auto;
+        }
+        @media screen and (min-width: 750px) {
+            .someProducts {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            @media screen and (min-width: 1200px) {
+                .main h1 {
+                    font-size: xx-large;
+                }
+                .offProducts {
+                    height: 60vh;
+                }
+                .details .detailsDiv {
+                    font-size: larger;
+                }
+                @media screen and (min-width: 1500px) {
+                    .products {
+                        justify-content: center;
+                    }
+                    .nextBtn {
+                        width: 5vh;
+                        height: 5vh;
+                    }
+                    .someProducts {
+                        grid-template-columns: repeat(4, 1fr);
+                    }
+                    @media screen and (min-width: 1800px) {
+                        .someProducts {
+                            grid-template-columns: repeat(5, 1fr);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+

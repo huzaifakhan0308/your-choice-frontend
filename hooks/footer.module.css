@@ -1,16 +1,17 @@
 .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     border-top: 1px solid black;
     font-size: small;
-    min-height: 8vh;
+    height: 8vh;
     padding: 10px;
     margin-top: 2vh;
+    background-color: white;
 }
 
 .footer span {

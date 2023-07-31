@@ -7,16 +7,16 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: 8vh;
+    height: 60px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.295);
 }
 
 .logo {
-    height: 20vh;
+    height: 150px;
 }
 
 .mobileMenu {
-    height: 6vh;
+    height: 50px;
     margin: 10px;
     opacity: 80%;
 }
@@ -81,7 +81,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 10vh;
+    height: 70px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.428);
 }
 
@@ -129,7 +129,6 @@
     }
 
     .navbar {
-        height: 10vh;
         justify-content: start;
     }
 
