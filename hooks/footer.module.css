@@ -7,10 +7,9 @@
     left: 0;
     width: 100%;
     border-top: 1px solid black;
-    font-size: small;
-    height: 8vh;
+    font-size: x-small;
+    min-height: 65px;
     padding: 10px;
-    margin-top: 2vh;
     background-color: white;
 }
 
@@ -23,7 +22,7 @@
     .footer {
         flex-direction: row;
         align-items: center;
-        min-height: 10vh;
+        min-height: 70px;
         font-size: 12px;
     }
 

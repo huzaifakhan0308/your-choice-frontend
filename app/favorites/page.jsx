@@ -88,7 +88,7 @@ function Page() {
       const filteredProducts = products.filter(product => favoritesFromLocalStorage.includes(product._id));
       setArray(filteredProducts);
     }
-  })
+  },[])
 
   return (
     <>
