@@ -2,17 +2,15 @@
 import React from 'react'
 import Navbar from '../navbar/navbar'
 import styles from './page.module.css'
-import backgroundImage from '../../assets/a.jpg'
 
 function Contact() {
 
   return (
       <>
         <Navbar />
-        <div className={styles.main} style={{ backgroundImage: `url(${backgroundImage.src})` }}>
+        <div className={styles.main}>
           <div className={styles.layout}>
-            <h1>About Us</h1>
-            <h2>Discover Fashion Forward Styles for Everyone</h2>
+            <h1>Discover Fashion Forward Styles for Everyone</h1>
             <p>
               At Your-Choice, we are passionate about fashion and believe that style knows no boundaries.
               Our mission is to provide our customers with a carefully curated collection of shoes, jackets, and handbags.

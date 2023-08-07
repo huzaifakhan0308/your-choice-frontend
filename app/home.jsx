@@ -112,16 +112,6 @@ function Home() {
         }
     ]
 
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        setIsVisible(true);
-        const timeout = setTimeout(() => {
-            setIsVisible(false);
-        }, 3000);
-        return () => clearTimeout(timeout);
-    }, []);
-
     const [currentProductIndex, setCurrentProductIndex] = useState(0);
     const [changeColor, setChangeColor] = useState(false);
     const [favorites, setFavorites] = useState([]);
@@ -215,7 +205,7 @@ function Home() {
                       </Link>
                   ))}
               </div>
-              <h2>Some Products</h2>
+              <h2>Our Latest Collection</h2>
               <div className={styles.someProducts}>
                   {product.slice(0, 15).map((e, index) => (
                       <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index} key={index} />

@@ -7,7 +7,6 @@ import { localStorageKeys } from '../common/strings'
 
 function Card({ e, index, favorites, setFavorites }) {
     
-
     const setDetailsId = (id) => {
         localStorage.setItem(localStorageKeys.favouriteKey, JSON.stringify(id))
     }
@@ -24,7 +23,6 @@ function Card({ e, index, favorites, setFavorites }) {
             setFavorites(updatedFavorites);
             console.log('updatedFavorites: ', updatedFavorites)
         }
-        // window.location.reload()
     };
 
     const isFavorite = (id) => favorites?.includes(id);

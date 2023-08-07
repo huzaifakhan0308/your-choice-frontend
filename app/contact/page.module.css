@@ -1,13 +1,29 @@
 .main {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-image: url('../../assets/shopping.jpeg');
+    background-position: center;
+    background-size: cover;
+}
+
+.layout {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 92vh;
+    width: 90%;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.633);
 }
 
 @media screen and (min-width: 700px) {
-    .main {
-        min-height: 90vh;
+    .layout {
+        width: auto;
+        padding: 40px;
     }
 }

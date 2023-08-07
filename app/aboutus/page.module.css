@@ -1,6 +1,10 @@
 .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    min-height: 92vh;
+    min-height: 100vh;
+    background-image: url('../../assets/shopImg2.jpeg');
     background-size: cover;
     background-position: center;
 }
@@ -8,21 +12,16 @@
 .layout {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.504);
+    padding: 100px;
+    background-color: rgba(0, 0, 0, 0.563);
     width: 100%;
-    min-height: 92vh;
+    min-height: 100vh;
     color: white;
 }
 
 @media screen and (min-width: 700px) {
-    .main {
-        min-height: 90vh;
-    }
-
-    .layout {
-        min-height: 90vh;
-    }
+    /* .layout {
+        width: 80%;
+    } */
 }
