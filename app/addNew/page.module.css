@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.container form {
+    width: auto;
+    margin: 10px;
+    margin-bottom: 16vh;
+}
+
+@media screen and (min-width: 800px) {
+    .container form {
+        width: 1000px;
+        margin-bottom: 13vh;
+    }
+}

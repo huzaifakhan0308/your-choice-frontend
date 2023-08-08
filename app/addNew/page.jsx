@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef } from 'react'
 import Navbar from '../navbar/navbar';
+import styles from './page.module.css'
 import Footer from '../../hooks/footer.jsx';
 
 function Page() {
@@ -49,8 +50,9 @@ function Page() {
   return (
     <>
         <Navbar/>
+        <div className={styles.container}>
           <form className="row g-3" onSubmit={handleSubmit}>
-              <h1>Thank you for choosing Your <span style={{ color: "red" }}>Choice</span> Shop!</h1>
+              <h1>Add new <span style={{ color: "red" }}>Product</span></h1>
               <div className="col-md-6">
                   <label className="form-label">First name</label>
                   <input type="text" className="form-control" id="inputEmail4" ref={firstNameRef} required />
@@ -94,6 +96,7 @@ function Page() {
                   <button type="submit" className="btn btn-dark">Confirm</button>
               </div>
           </form>
+        </div>
         <Footer/>
     </>
   )
