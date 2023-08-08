@@ -54,7 +54,7 @@ function Page() {
           <form className="row g-3" onSubmit={handleSubmit}>
               <h1>Add new <span style={{ color: "red" }}>Product</span></h1>
               <div className="col-md-6">
-                  <label className="form-label">First name</label>
+                  <label className="form-label">Title</label>
                   <input type="text" className="form-control" id="inputEmail4" ref={firstNameRef} required />
               </div>
               <div className="col-md-6">
@@ -62,27 +62,36 @@ function Page() {
                   <input type="text" className="form-control" id="inputPassword4" ref={lastNameRef} required />
               </div>
               <div className="col-12">
-                  <label className="form-label">Address</label>
+                  <label className="form-label">Price</label>
                   <input type="text" className="form-control" id="inputAddress" ref={addressRef} placeholder="1234 Main Street" required />
               </div>
               <div className="col-12">
-                  <label className="form-label">Phone Number</label>
+                  <label className="form-label">Off</label>
                   <input type="tel" className="form-control" id="inputEmail4" placeholder="+92" pattern="[\d+]{11,}" ref={phoneRef} required />
                   <small className="form-text text-muted">Please enter a valid phone number with at least 11 digits.</small>
               </div>
               <div className="col-12">
-                  <label className="form-label">Email</label>
+                  <label className="form-label">Colors</label>
                   <input type="email" className="form-control" id="inputPhoneNumber" placeholder="abc@example.com (optional)" ref={emailRef} />
               </div>
               <div className="col-md-6">
-                  <label className="form-label">City</label>
+                  <label className="form-label">Sizes</label>
                   <input type="text" className="form-control" ref={cityRef} id="inputCity" required />
               </div>
               <div className="col-md-4">
-                  <label className="form-label">State</label>
+                  <label className="form-label">adults</label>
                   <select id="inputState" className="form-select" ref={stateRef} required>
                       <option value="" disabled>Choose...</option>
-                      <option value="KPK">KPK</option>
+                      <option value="men">Men</option>
+                      <option value="women">Women</option>
+                      <option value="kid">Kid</option>
+                  </select>
+              </div>
+              <div className="col-md-4">
+                  <label className="form-label">type</label>
+                  <select id="inputState" className="form-select" ref={stateRef} required>
+                      <option value="" disabled>Choose...</option>
+                        <option value="Shoes">Shoes</option>
                       <option value="Sindh">Sindh</option>
                       <option value="Punjab">Punjab</option>
                       <option value="Balochistan">Balochistan</option>
