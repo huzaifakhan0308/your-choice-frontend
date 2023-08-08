@@ -91,14 +91,13 @@ function Page() {
                   <label className="form-label">type</label>
                   <select id="inputState" className="form-select" ref={stateRef} required>
                       <option value="" disabled>Choose...</option>
-                        <option value="Shoes">Shoes</option>
-                      <option value="Sindh">Sindh</option>
-                      <option value="Punjab">Punjab</option>
-                      <option value="Balochistan">Balochistan</option>
+                      <option value="shoes">Shoes</option>
+                      <option value="handbag">Handbag</option>
+                      <option value="jacket">Jacket</option>
                   </select>
               </div>
               <div className="col-md-2">
-                  <label className="form-label">Zip</label>
+                  <label className="form-label">Quantity</label>
                   <input type="text" className="form-control" id="inputZip" placeholder="(optional)" ref={zipRef} />
               </div>
               <div className="col-12">
