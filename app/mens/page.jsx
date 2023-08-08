@@ -1,10 +1,12 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/navbar';
-import styles from './page.module.css'
+import styles from '../../utilities/page.module.css'
 import shoes from '../../assets/shoes.jpg'
 import Card from '../../hooks/card.jsx';
 import Footer from '../../hooks/footer.jsx';
+import { useSearchParams } from 'next/navigation';
+import { localStorageKeys } from '../../common/strings';
 
 function Page() {
   const products = [
@@ -79,12 +81,24 @@ function Page() {
       _id: "7"
     }
   ]
+  
+  const searchParams = useSearchParams();
+  const selectedTypeFromQuery = searchParams.get('type') || 'shoes';
+  const [selectedType, setSelectedType] = useState(selectedTypeFromQuery);
 
-  const [selectedType, setSelectedType] = useState('shoes');
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem(localStorageKeys.favouriteKey));
+    if (Array.isArray(storedFavorites)) {
+      setFavorites(storedFavorites);
+    }
+  }, []);
+  
   return (
     <>
       <Navbar />
-      <main className={styles.container}>
+      <main className={styles.main}>
         <h1>Stylish Men's Collection: Explore Our Exclusive Shoes and Jackets!</h1>
         <div className={styles.menu}>
           <button
@@ -102,7 +116,7 @@ function Page() {
         </div>
         <div className={styles.products}>
           {products.filter((product) => product.type === selectedType).map((e, index) => (
-            <Card e={e} index={index} />
+            <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index} />
           ))}
         </div>
       </main>

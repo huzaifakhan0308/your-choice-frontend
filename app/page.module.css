@@ -135,7 +135,7 @@
     justify-content: center;
     width: 100%;
     height: 46%;
-    padding-top: 10px;
+    padding-top: 15px;
     font-size: smaller;
 }
 
@@ -234,7 +234,7 @@
   justify-items: center;
   width: 90%;
   margin-top: 20px;
-  margin-bottom: 12vh;
+  margin-bottom: 15vh;
 }
 
 @media screen and (min-width: 450px) {
@@ -242,10 +242,10 @@
         height: 60vh;
     }
 
-  .someProducts {
-    grid-template-columns: repeat(2, 1fr);
-    width: 94%;
-  }
+    .someProducts {
+      grid-template-columns: repeat(2, 1fr);
+      width: 94%;
+    }
 
   @media screen and (min-width: 700px) {
 
@@ -294,6 +294,7 @@
         @media screen and (min-width: 750px) {
             .someProducts {
                 grid-template-columns: repeat(3, 1fr);
+                margin-bottom: 12vh;
             }
             @media screen and (min-width: 1200px) {
                 .main h1 {

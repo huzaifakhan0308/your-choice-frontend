@@ -36,7 +36,7 @@ useEffect(() => {
         {boolean?
         <div className={styles.loggedIn}>
             <h2>Succesfully LoggedIn!</h2>
-            <Link href="/main" className={styles.form} style={{ textDecoration: "none" }}>
+            <Link href="/" className={styles.form} style={{ textDecoration: "none" }}>
               <button>Go to Home</button>
             </Link>
         </div>

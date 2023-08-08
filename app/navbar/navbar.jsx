@@ -5,10 +5,15 @@ import Link from "next/link";
 import logo from '../../public/your-choice-logo.png'
 import menuIcon from '../../public/menuIcon.png'
 import favorites from '../../public/favorites.png'
+import { useRouter } from 'next/navigation';
+// import { useSearchParams } from 'next/navigation';
+// const searchParams = useSearchParams();
+// const id = searchParams.get('id');
 
 const Navbar = () => {
     const [boolean, setBoolean] = useState(false)
     const [showMenu, setShowMenu] = useState(false)
+    const router = useRouter();
 
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("your-choice-owner"));
@@ -19,6 +24,15 @@ const Navbar = () => {
 
     const handleLinkClick = () => {
         setShowMenu(false);
+    };
+
+    const handleSelectChange = (event) => {
+        const selectedValue = event.target.value;
+        router.push(selectedValue);
+    };
+
+    const handleNavigation = (route) => {
+        router.push(route);
     };
     return (
         <>
@@ -122,6 +136,22 @@ const Navbar = () => {
                     </ul>
                 </nav>
             </header>
+            <div className={styles.headerBottom}>
+                <select name="" id="" onChange={(event) => handleSelectChange(event)}>
+                    <option value="/mens?type=jackets">Men's Jackets</option>
+                    <option value="/women?type=handbag">Women's Handbags</option>
+                    <option value="/mens?type=shoes">Men's Footwear Collection</option>
+                    <option value="/women?type=shoes">Women's Shoe Selection</option>
+                    <option value="/kids?type=shoes">Kid's Shoe Assortment</option>
+                </select>
+                <div className="">
+                    <button onClick={() => handleNavigation("/mens?type=jackets")}>Men's Jackets</button>
+                    <button onClick={() => handleNavigation("/women?type=handbag")}>Women's Handbags</button>
+                    <button onClick={() => handleNavigation("/mens?type=shoes")}>Men's Footwear Collection</button>
+                    <button onClick={() => handleNavigation("/women?type=shoes")}>Women's Shoe Selection</button>
+                    <button onClick={() => handleNavigation("/kids?type=shoes")}>Kid's Shoe Assortment</button>
+                </div>
+            </div>
         </>
     );
 };

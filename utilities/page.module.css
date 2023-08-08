@@ -1,11 +1,12 @@
-.container {
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-bottom: 15vh;
 }
 
-.container h1 {
+.main h1 {
   padding: 10px;
   font-size: small;
 }
@@ -39,7 +40,7 @@
 }
 
 @media screen and (min-width: 550px) {
-  .container h1 {
+  .main h1 {
     font-size: x-large;
   }
   .products {
@@ -47,6 +48,9 @@
     width: 94%;
   }
   @media screen and (min-width: 850px) {
+    .main {
+        margin-bottom: 12vh;
+    }
     .products {
         grid-template-columns: repeat(3, 1fr);
     }

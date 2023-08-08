@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/navbar';
-import styles from './page.module.css'
+import styles from '../../utilities/page.module.css'
 import shoes from '../../assets/shoes.jpg'
 import Card from '../../hooks/card.jsx';
 import Footer from '../../hooks/footer.jsx';
@@ -94,7 +94,7 @@ function Page() {
   return (
     <>
       <Navbar />
-      <main className={styles.container}>
+      <main className={styles.main}>
         <h1>Exquisite Selection: Shop Now for Premium Men's, Women's, and Kids' Products!</h1>
         <div className={styles.menu}>
           <button

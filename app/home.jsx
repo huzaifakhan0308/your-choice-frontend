@@ -147,17 +147,35 @@ function Home() {
         }, 1000);
         return () => clearInterval(interval);
     }, []);
-
+    
     const setDetailsId = (id) => {
         localStorage.setItem("yourChoice-products-id", JSON.stringify(id))
     }
-
+    
     const handleNextImage = () => {
         setCurrentProductIndex((prevIndex) => getNextProductWithOff(prevIndex, 1));
     };
-
+    
     const handleBackImage = () => {
         setCurrentProductIndex((prevIndex) => getNextProductWithOff(prevIndex, -1));
+    };
+    
+    const [currentPageIndex, setCurrentPageIndex] = useState(0);
+    const productsPerPage = 5;
+    const totalPages = Math.ceil(product.length / productsPerPage);
+    const startIndex = currentPageIndex * productsPerPage;
+    const visibleProducts = product.slice(startIndex, startIndex + productsPerPage);
+    
+    const handleNextPage = () => {
+        if (currentPageIndex < totalPages - 1) {
+            setCurrentPageIndex(currentPageIndex + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPageIndex > 0) {
+            setCurrentPageIndex(currentPageIndex - 1);
+        }
     };
 
   return (
@@ -206,9 +224,22 @@ function Home() {
                   ))}
               </div>
               <h2>Our Latest Collection</h2>
+              <div className={styles.pagination}>
+                  <button onClick={handlePreviousPage} disabled={currentPageIndex === 0}>Previous</button>
+                  {Array.from({ length: totalPages }, (_, index) => (
+                      <button
+                          key={index}
+                          onClick={() => setCurrentPageIndex(index)}
+                          className={index === currentPageIndex ? styles.activePage : ''}
+                      >
+                          {index + 1}
+                      </button>
+                  ))}
+                  <button onClick={handleNextPage} disabled={currentPageIndex === totalPages - 1}>Next</button>
+              </div>
               <div className={styles.someProducts}>
-                  {product.slice(0, 15).map((e, index) => (
-                      <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index} key={index} />
+                  {visibleProducts.map((e, index) => (
+                      <Card favorites={favorites} setFavorites={setFavorites} e={e} index={startIndex + index} key={index} />
                   ))}
               </div>
           </main>

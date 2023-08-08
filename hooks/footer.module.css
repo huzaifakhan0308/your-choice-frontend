@@ -11,6 +11,7 @@
     min-height: 65px;
     padding: 10px;
     background-color: white;
+    z-index: -1;
 }
 
 .footer span {
