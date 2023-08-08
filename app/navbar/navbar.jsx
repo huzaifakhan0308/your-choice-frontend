@@ -69,6 +69,11 @@ const Navbar = () => {
                                         My products
                                     </li>
                                 </Link>
+                                <Link href="/products" >
+                                    <li onClick={handleLinkClick}>
+                                        Add new
+                                    </li>
+                                </Link>
                             </>
                             :
                             <>
@@ -110,8 +115,13 @@ const Navbar = () => {
                                 </li>
                             </Link>
                             <Link href="/products" >
-                                <li style={{ color: "red" }}>
+                                <li>
                                     My products
+                                </li>
+                            </Link>
+                            <Link href="/products" >
+                                <li style={{ color: "red" }}>
+                                    Add new
                                 </li>
                             </Link>
                             </>
@@ -137,7 +147,8 @@ const Navbar = () => {
                 </nav>
             </header>
             <div className={styles.headerBottom}>
-                <select name="" id="" onChange={(event) => handleSelectChange(event)}>
+                <select onChange={(event) => handleSelectChange(event)}>
+                    <option disabled>Select a Category</option>
                     <option value="/mens?type=jackets">Men's Jackets</option>
                     <option value="/women?type=handbag">Women's Handbags</option>
                     <option value="/mens?type=shoes">Men's Footwear Collection</option>

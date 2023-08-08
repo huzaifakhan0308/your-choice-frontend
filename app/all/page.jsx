@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/navbar';
+import Footer from '../../hooks/footer.jsx';
 import styles from '../../utilities/page.module.css'
 import shoes from '../../assets/shoes.jpg'
 import Card from '../../hooks/card.jsx';
-import Footer from '../../hooks/footer.jsx';
 import { localStorageKeys } from '../../common/strings';
 
 function Page() {
