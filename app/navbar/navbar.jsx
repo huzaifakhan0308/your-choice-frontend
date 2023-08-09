@@ -69,7 +69,7 @@ const Navbar = () => {
                                         My products
                                     </li>
                                 </Link>
-                                <Link href="/products" >
+                                <Link href="/addNew" >
                                     <li onClick={handleLinkClick}>
                                         Add new
                                     </li>
@@ -119,7 +119,7 @@ const Navbar = () => {
                                     My products
                                 </li>
                             </Link>
-                            <Link href="/products" >
+                            <Link href="/addNew" >
                                 <li style={{ color: "red" }}>
                                     Add new
                                 </li>

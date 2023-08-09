@@ -1,5 +1,5 @@
 "use client";
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/navbar';
 import styles from './page.module.css';
 import shoes from '../../assets/shoes.jpg'
@@ -144,35 +144,48 @@ const orders = [
     return products.find((product) => product._id === _id);
   };
 
+  const [boolean, setBoolean] = useState(false)
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("your-choice-owner"));
+    if (data && data.password === process.env.NEXT_PUBLIC_PASSWORD) {
+      setBoolean(true)
+    }
+  }, []);
+
   return (
     <>
+    {boolean?
+      <>
       <Navbar />
-      <div className={styles.container}>
-        <h1>Orders</h1>
-        {orders.map((order) => (
-          <div className={styles.orders}>
-            <img src={findProductById(order.productId)?.img[0].src} alt="" />
-            <div>
-              <h2>Name: {order.name}</h2>
-              <p>Address: {order.address}</p>
-              <p>Phone: {order.phoneNumber}</p>
-              {order.email ? <p>Email : {order.email}</p> : ""}
+        <div className={styles.container}>
+          <h1>Orders</h1>
+          {orders.map((order) => (
+            <div className={styles.orders}>
+              <img src={findProductById(order.productId)?.img[0].src} alt="" />
+              <div>
+                <h2>Name: {order.name}</h2>
+                <p>Address: {order.address}</p>
+                <p>Phone: {order.phoneNumber}</p>
+                {order.email ? <p>Email : {order.email}</p> : ""}
+              </div>
+              <div>
+                <p>Color: {order.color}</p>
+                <p>Size: {order.size}</p>
+                <p>City: {order.city}</p>
+                <p>State: {order.state}</p>
+                {order.zip ? <p> Zip: { order.zip } </p> : ""}
+                <p>Quantity: {order.quantity}</p>
+              </div>
+              <div className={styles.buttonDiv}>
+                <button className={order.confirmed ? styles.confirmed : ""}>Confirmed</button>
+                <button style={{ backgroundColor: "black", color: "white"}}>Delete</button>
+              </div>
             </div>
-            <div>
-              <p>Color: {order.color}</p>
-              <p>Size: {order.size}</p>
-              <p>City: {order.city}</p>
-              <p>State: {order.state}</p>
-              {order.zip ? <p> Zip: { order.zip } </p> : ""}
-              <p>Quantity: {order.quantity}</p>
-            </div>
-            <div className={styles.buttonDiv}>
-              <button className={order.confirmed ? styles.confirmed : ""}>Confirmed</button>
-              <button style={{ backgroundColor: "black", color: "white"}}>Delete</button>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </>
+    : ""}
     </>
   )
 }

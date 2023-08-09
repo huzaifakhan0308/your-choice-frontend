@@ -5,6 +5,7 @@ import Navbar from '../navbar/navbar.jsx'
 import Footer from '../../hooks/footer'
 import Card from '../../hooks/card.jsx';
 import shoes from '../../assets/shoes.jpg'
+import { localStorageKeys } from '../../common/strings';
 
 function Page() {
   const products = [
@@ -80,15 +81,18 @@ function Page() {
     }
   ]
 
-  const [array, setArray] = useState([])
+  const [selectedType, setSelectedType] = useState('shoes');
+
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const favoritesFromLocalStorage = JSON.parse(localStorage.getItem("yourChoice-favorite"));
-    if (favoritesFromLocalStorage) {
-      const filteredProducts = products.filter(product => favoritesFromLocalStorage.includes(product._id));
-      setArray(filteredProducts);
+    const storedFavorites = JSON.parse(localStorage.getItem(localStorageKeys.favouriteKey));
+    if (Array.isArray(storedFavorites)) {
+      setFavorites(storedFavorites);
     }
-  },[])
+  }, []);
+
+  const likedProducts = products.filter(product => favorites.includes(product._id));
 
   return (
     <>
@@ -96,8 +100,8 @@ function Page() {
       <div className={styles.container}>
         <h1>Favorites Collection</h1>
         <div className={styles.products}>
-          {array.map((e, index) => (
-            <Card e={e} index={index} />
+          {likedProducts.map((e, index) => (
+            <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index} />
           ))}
         </div>
       </div>
