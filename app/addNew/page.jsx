@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/navbar';
 import styles from './page.module.css'
 import Footer from '../../hooks/footer.jsx';
+import axios from 'axios';
 
 function Page() {
 
@@ -27,6 +28,18 @@ function Page() {
         'Gray',
         'Black',
         'White',
+        'Navy',
+        'Turquoise',
+        'Coral',
+        'Teal',
+        'Lavender',
+        'Maroon',
+        'Gold',
+        'Silver',
+        'Beige',
+        'Indigo',
+        'Olive',
+        'Charcoal'
     ];
 
     const [selectedColors, setSelectedColors] = useState([]);
@@ -53,26 +66,64 @@ function Page() {
     };
 
     const [submitSuccess, setSubmitSuccess] = useState(false);
-
-    const handleSubmit = (e) => {
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.target);
-        const formValues = {};
+        const imageFiles = formData.getAll("images");
 
-        formData.forEach((value, key) => {
-            formValues[key] = value;
-        });
+        if (selectedColors.length === 0) {
+            alert("Please select at least one color");
+            return;
+        } else if (sizes.length === 0) {
+            alert("Please add at least one size");
+            return;
+        } else if (imageFiles.length !== 4) {
+            alert("Please select exactly 4 images");
+            return;
+        }
 
-        console.log('Form values:', formValues, selectedColors, sizes);
-        if (selectedColors.length === 0){
-            alert("please select at least one color")
-        } else if (sizes.length === 0){
-            alert("please add at least one size")
+        const uploadedImageUrls = [];
+
+        for (const imageFile of imageFiles) {
+            const data = new FormData();
+            data.append("file", imageFile);
+            data.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_PRESET);
+
+            try {
+                const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_NAME}/image/upload`, data);
+                const imageUrl = response.data.url;
+                uploadedImageUrls.push(imageUrl);
+            } catch (error) {
+                console.error('Error', error);
+            }
         }
-        else{
-            // setSubmitSuccess(true);
+
+        const password = JSON.parse(localStorage.getItem('your-choice-owner')).password;
+
+        const data = {
+            title: formData.get("title"),
+            img: uploadedImageUrls,
+            price: parseInt(formData.get("price")),
+            off: parseInt(formData.get("off")),
+            colors: selectedColors,
+            sizes: sizes,
+            adults: formData.get("adult"),
+            type: formData.get("type"),
+            quantity: parseInt(formData.get("quantity")),
+            password: password
+        };
+
+        try {
+            const response = await axios.post('http://localhost:8000/api/items', data);
+            console.log('Response:', response.data);
+            setSubmitSuccess(true);
+        } catch (error) {
+            console.error('Error', error);
+            return
         }
+
     };
 
     return (
@@ -81,11 +132,11 @@ function Page() {
             <>
                 <Navbar />
                 <div className={styles.container}>
-                    {submitSuccess && (
-                        <div className="alert alert-success mt-3" role="alert">
-                            Form submitted successfully!
-                        </div>
-                    )}
+                    {submitSuccess? 
+                    <div className="alert alert-success mt-3" role="alert">
+                        Form submitted successfully!
+                    </div>
+                    : 
                     <form className="row g-3" onSubmit={handleSubmit}>
                         <h1>Add new <span style={{ color: "red" }}>Product</span></h1>
                         <div className="col-md-6">
@@ -94,47 +145,58 @@ function Page() {
                         </div>
                         <div className="col-md-6">
                             <label className="form-label">Price</label>
-                                <input type="number" className="form-control" name="price" placeholder="2000 e.g" required />
+                            <input type="number" className="form-control" name="price" placeholder="2000 e.g" required />
                         </div>
                         <div className="col-md-6">
                             <label className="form-label">OFF%</label>
                             <input type="number" className="form-control" name="off" placeholder="10.0 (optional)" />
                         </div>
-                        <div>
+                        <div className="col-12">
                             <h4>Select available colors</h4>
-                            {colorOptions.map((color) => (
-                                <label key={color}>
-                                    <input
-                                        type="checkbox"
-                                        checked={selectedColors.includes(color)}
-                                        onChange={() => handleColorChange(color)}  
-                                    />
-                                    {color}
-                                </label>
-                            ))}
-                        </div>
-                        <div className="mt-4">
                             <div>
-                                <h4>Add available Sizes:</h4>
-                                <input
-                                    type="text"
-                                    value={newSize}
-                                    onChange={(e) => setNewSize(e.target.value)}
-                                    />
-                                <button onClick={handleSizeAdd}>+</button>
+                                {colorOptions.map((color) => (
+                                    <div className="form-check form-check-inline" key={color}>
+                                        <input
+                                            className="form-check-input"
+                                            type="checkbox"
+                                            checked={selectedColors.includes(color)}
+                                            onChange={() => handleColorChange(color)}
+                                        />
+                                        <label className="form-check-label">
+                                            <div className={styles.colorBox} style={{ backgroundColor: color.toLowerCase() }}></div>
+                                            {color}
+                                        </label>
+                                    </div>
+                                ))}
                             </div>
+                        </div>
+                        <div className="col-md-6">
+                            <div>
+                                <input
+                                    type="number"
+                                    value={newSize}
+                                    className="form-control"
+                                    placeholder='Add available Sizes'
+                                    onChange={(e) => setNewSize(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <div className="col-md-6">
+                            <button className="btn btn-dark" onClick={handleSizeAdd}>+</button>
+                        </div>
+                        <div className="">
                             <h4>Selected Sizes:</h4>
                             <div>
                                 {sizes.map((size) => (
-                                    <div key={size}>
-                                        {size} <button onClick={() => handleSizeDelete(size)}>DLT</button>
+                                    <div key={size} style={{ fontSize: "30px" }}>
+                                        {size} <button style={{ padding: "10px" }} className="btn btn-dark" onClick={() => handleSizeDelete(size)}>Remove</button>
                                     </div>
                                 ))}
                             </div>
                         </div>
                         <div className="col-md-4">
                             <label className="form-label">adults</label>
-                                <select className="form-select" name="adult" required >
+                            <select className="form-select" name="adult" required >
                                 <option value="men">Men</option>
                                 <option value="women">Women</option>
                                 <option value="kid">Kid</option>
@@ -152,10 +214,15 @@ function Page() {
                             <label className="form-label">Quantity</label>
                             <input type="number" className="form-control" name="quantity" required />
                         </div>
+                        <div className="col-md-6">
+                            <label className="form-label">Images</label>
+                            <input type="file" className="form-control" name="images" accept="image/*" multiple />
+                        </div>
                         <div className="col-12">
                             <button type="submit" className="btn btn-dark">Confirm</button>
                         </div>
                     </form>
+                    }
                 </div>
                 <Footer />
             </>

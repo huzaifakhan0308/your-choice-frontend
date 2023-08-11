@@ -9,6 +9,17 @@
     margin-bottom: 16vh;
 }
 
+.colorBox {
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+
 @media screen and (min-width: 800px) {
     .container form {
         width: 1000px;
