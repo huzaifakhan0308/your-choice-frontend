@@ -6,9 +6,6 @@ import logo from '../../public/your-choice-logo.png'
 import menuIcon from '../../public/menuIcon.png'
 import favorites from '../../public/favorites.png'
 import { useRouter } from 'next/navigation';
-// import { useSearchParams } from 'next/navigation';
-// const searchParams = useSearchParams();
-// const id = searchParams.get('id');
 
 const Navbar = () => {
     const [boolean, setBoolean] = useState(false)

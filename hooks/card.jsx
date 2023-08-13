@@ -8,20 +8,18 @@ import { localStorageKeys } from '../common/strings'
 function Card({ e, index, favorites, setFavorites }) {
     
     const setDetailsId = (id) => {
-        localStorage.setItem(localStorageKeys.favouriteKey, JSON.stringify(id))
+        localStorage.setItem(localStorageKeys.productKey, JSON.stringify(id))
     }
     
     const handleFavoriteToggle = (id) => {
         if (isFavorite(id)) {
             const updatedFavorites = favorites.filter((favId) => favId !== id);
             localStorage.setItem(localStorageKeys.favouriteKey, JSON.stringify(updatedFavorites));
-            console.log('updatedFavorites: ', updatedFavorites)
             setFavorites(updatedFavorites);
         } else {
             const updatedFavorites = [...favorites, id];
             localStorage.setItem(localStorageKeys.favouriteKey, JSON.stringify(updatedFavorites));
             setFavorites(updatedFavorites);
-            console.log('updatedFavorites: ', updatedFavorites)
         }
     };
 
@@ -29,7 +27,7 @@ function Card({ e, index, favorites, setFavorites }) {
     
   return (
         <div className={styles.cards} key={index}>
-            <div className={styles.img} style={{ backgroundImage: `url(${e.img[0].src})` }}>
+            <div className={styles.img} style={{ backgroundImage: `url(${e.img[0]})` }}>
               <img
                   src={isFavorite(e._id) ? redHeart.src : blackHeart.src}
                   alt=""

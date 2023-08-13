@@ -1,3 +1,4 @@
 export const localStorageKeys={
-    favouriteKey: "yourChoice-products-id"
+    favouriteKey: "yourChoice-favorites-id",
+    productKey: "yourChoice-products-id"
 }

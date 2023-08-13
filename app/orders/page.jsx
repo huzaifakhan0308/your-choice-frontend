@@ -2,155 +2,50 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/navbar';
 import styles from './page.module.css';
-import shoes from '../../assets/shoes.jpg'
-import menShoes from '../../assets/menShoes.jpeg';
+import { useStateContext } from "../../context/StateContext";
+import axios from 'axios';
 
 function Page() {
-const orders = [
-    {
-      name: "huzaifa",
-      address: "pirpiai",
-      phoneNumber: "+923083972806",
-      email: "huzaifa@gmail.com",
-      productId: "1",
-      color: "brown",
-      size: "10",
-      city: "nowshera",
-      state: "KPK",
-      zip: "1234",
-      quantity: "2",
-      confirmed: false
-    },
-    {
-      name: "huzaifa",
-      address: "pirpiai",
-      phoneNumber: "+923083972806",
-      email: "huzaifa@gmail.com",
-      productId: "2",
-      color: "brown",
-      size: "10",
-      city: "nowshera",
-      state: "KPK",
-      zip: "1234",
-      quantity: "2",
-      confirmed: false
-    },
-    {
-      name: "huzaifa",
-      address: "pirpiai",
-      phoneNumber: "+923083972806",
-      email: "huzaifa@gmail.com",
-      productId: "3",
-      color: "brown",
-      size: "10",
-      city: "nowshera",
-      state: "KPK",
-      zip: "1234",
-      quantity: "2",
-      confirmed: false
-    },
-    {
-      name: "huzaifa",
-      address: "pirpiai",
-      phoneNumber: "+923083972806",
-      email: "huzaifa@gmail.com",
-      productId: "4",
-      color: "brown",
-      size: "10",
-      city: "nowshera",
-      state: "KPK",
-      zip: "1234",
-      quantity: "2",
-      confirmed: true
-    }
-  ]
+  const { findProductById } = useStateContext();
+  const [orders, setOrders] = useState([])
+  const [products, setProducts] = useState([])
 
-  const products = [
-    {
-      title: "shoes",
-      img: [shoes, menShoes, shoes, menShoes],
-      price: "1000",
-      off: "20",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "1",
-      sizes: [7, 8, 9, 10, 11],
-      quantity: 3
-    },
-    {
-      title: "handbag",
-      img: [shoes, shoes, shoes, shoes,],
-      price: "1000",
-      off: "20",
-      colors: ["black", "brown"],
-      gender: "male",
-      type: "handbag",
-      _id: "2",
-      sizes: [7, 8, 9, 10, 11],
-      quantity: 3
-    },
-    {
-      title: "jackets",
-      img: [shoes, shoes, shoes, shoes,],
-      price: "500",
-      off: "",
-      colors: ["black", "brown"],
-      gender: "kid",
-      type: "jackets",
-      _id: "3",
-      sizes: [3, 4, 5, 6, 7],
-      quantity: 4
-    },
-    {
-      title: "shoes",
-      img: [shoes, shoes, shoes, shoes,],
-      price: "2000",
-      off: "20",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "4",
-      sizes: [7, 8, 9, 10, 11],
-      quantity: 5
-    },
-    {
-      title: "shoes",
-      img: [shoes, shoes, shoes, shoes,],
-      price: "1000",
-      off: "20",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "5",
-      sizes: [7, 8, 9, 10, 11],
-      quantity: 2
-    },
-    {
-      title: "shoes",
-      img: [shoes, shoes, shoes, shoes],
-      price: "2000",
-      off: "20",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "6",
-      sizes: [7, 8, 9, 10, 11],
-      quantity: 3
+  const findProduct = async () => {
+    for (let i = 0; i < orders.length; i++) {
+      const data = await findProductById(orders[i].productId)
+      const isProductInArray = products.some(product => product._id === data._id);
+      if (!isProductInArray) {
+        setProducts(prevProducts => [...prevProducts, data]);
+      }
     }
-  ]
-
-  const findProductById = (_id) => {
-    return products.find((product) => product._id === _id);
   };
 
   const [boolean, setBoolean] = useState(false)
+
+  useEffect(() => {
+    console.log(products);
+    if (orders.length > 0) {
+      findProduct()
+    }
+  }, [orders]);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("your-choice-owner"));
     if (data && data.password === process.env.NEXT_PUBLIC_PASSWORD) {
       setBoolean(true)
     }
+  }, []);
+
+  useEffect(() => {
+    const data = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API}/buy`)
+        setOrders(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    data()
   }, []);
 
   return (
@@ -160,9 +55,9 @@ const orders = [
       <Navbar />
         <div className={styles.container}>
           <h1>Orders</h1>
-          {orders.map((order) => (
-            <div className={styles.orders}>
-              <img src={findProductById(order.productId)?.img[0].src} alt="" />
+          {orders.map((order, index) => (
+            <div className={styles.orders} key={index}>
+              {/* <img src={findProductById(order.productId)?.img[0]} alt="" /> */}
               <div>
                 <h2>Name: {order.name}</h2>
                 <p>Address: {order.address}</p>

@@ -1,8 +1,9 @@
 .container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 14vh;
 }
 
 .products {
@@ -20,6 +21,13 @@
     width: 94%;
   }
   @media screen and (min-width: 850px) {
+    .container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 12vh;
+    }
     .products {
         grid-template-columns: repeat(3, 1fr);
     }

@@ -66,9 +66,12 @@ function Page() {
     };
 
     const [submitSuccess, setSubmitSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
     
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setLoading(true);
 
         const formData = new FormData(e.target);
         const imageFiles = formData.getAll("images");
@@ -90,7 +93,6 @@ function Page() {
             const data = new FormData();
             data.append("file", imageFile);
             data.append("upload_preset", process.env.NEXT_PUBLIC_CLOUDINARY_PRESET);
-
             try {
                 const response = await axios.post(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_NAME}/image/upload`, data);
                 const imageUrl = response.data.url;
@@ -116,12 +118,14 @@ function Page() {
         };
 
         try {
-            const response = await axios.post('http://localhost:8000/api/items', data);
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API}/items`, data);
             console.log('Response:', response.data);
             setSubmitSuccess(true);
         } catch (error) {
             console.error('Error', error);
             return
+        } finally {
+            setLoading(false);
         }
 
     };
@@ -132,11 +136,13 @@ function Page() {
             <>
                 <Navbar />
                 <div className={styles.container}>
-                    {submitSuccess? 
-                    <div className="alert alert-success mt-3" role="alert">
-                        Form submitted successfully!
-                    </div>
-                    : 
+                    {loading ? (
+                        <div className="loading-spinner">Loading...</div>
+                    ) : submitSuccess ? (
+                        <div className="alert alert-success mt-3" role="alert">
+                            Form submitted successfully!
+                        </div>
+                    ) : 
                     <form className="row g-3" onSubmit={handleSubmit}>
                         <h1>Add new <span style={{ color: "red" }}>Product</span></h1>
                         <div className="col-md-6">
@@ -182,7 +188,7 @@ function Page() {
                             </div>
                         </div>
                         <div className="col-md-6">
-                            <button className="btn btn-dark" onClick={handleSizeAdd}>+</button>
+                            <button type="button" className="btn btn-dark" onClick={handleSizeAdd}>+</button>
                         </div>
                         <div className="">
                             <h4>Selected Sizes:</h4>
@@ -219,7 +225,7 @@ function Page() {
                             <input type="file" className="form-control" name="images" accept="image/*" multiple />
                         </div>
                         <div className="col-12">
-                            <button type="submit" className="btn btn-dark">Confirm</button>
+                            <button type="submit" className="btn btn-dark">Submit</button>
                         </div>
                     </form>
                     }

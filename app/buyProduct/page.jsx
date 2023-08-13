@@ -2,86 +2,27 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Navbar from '../navbar/navbar'
 import styles from './page.module.css'
-import menShoes from '../../assets/menShoes.jpeg';
-import shoes from '../../assets/shoes.jpg'
 import done from '../../public/done.png'
 import Link from 'next/link';
-
+import { useStateContext } from "../../context/StateContext";
+import axios from 'axios';
+import { localStorageKeys } from '../../common/strings';
+  
 function Contact() {
-  const products = [
-    {
-      title: "shoes",
-      img: [shoes, menShoes, shoes, menShoes],
-      price: "1000",
-      off: "20",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "1",
-      sizes: [7, 8, 9, 10, 11],
-      quantity: 3
-    },
-    {
-      title: "handbag",
-      img: [shoes, shoes, shoes, shoes,],
-      price: "1000",
-      off: "20",
-      colors: ["black", "brown"],
-      gender: "male",
-      type: "handbag",
-      _id: "2",
-      sizes: [7, 8, 9, 10, 11],
-      quantity: 3
-    },
-    {
-      title: "jackets",
-      img: [shoes, shoes, shoes, shoes,],
-      price: "500",
-      off: "",
-      colors: ["black", "brown"],
-      gender: "kid",
-      type: "jackets",
-      _id: "3",
-      sizes: [3, 4, 5, 6, 7],
-      quantity: 4
-    },
-    {
-      title: "shoes",
-      img: [shoes, shoes, shoes, shoes,],
-      price: "2000",
-      off: "20",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "4",
-      sizes: [7, 8, 9, 10, 11],
-      quantity: 5
-    },
-    {
-      title: "shoes",
-      img: [shoes, shoes, shoes, shoes,],
-      price: "1000",
-      off: "20",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "5",
-      sizes: [7, 8, 9, 10, 11],
-      quantity: 2
-    },
-    {
-      title: "shoes",
-      img: [shoes, shoes, shoes, shoes],
-      price: "2000",
-      off: "20",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "6",
-      sizes: [7, 8, 9, 10, 11],
-      quantity: 3
+  const { findProductById } = useStateContext();
+  const [products, setProducts] = useState(null)
+
+  const getDetail = async (id) => {
+    const data = await findProductById(id)
+    setProducts(data)
+  }
+
+  useEffect(() => {
+    let id = JSON.parse(localStorage.getItem(localStorageKeys.productKey))
+    if (id) {
+      getDetail(id)
     }
-  ]
+  }, [])
 
   const [details, setDetails] = useState({
     productId: '',
@@ -109,7 +50,7 @@ function Contact() {
     }
   }, [])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!details.productId) {
       alert("You need to select a product first.");
@@ -119,7 +60,7 @@ function Contact() {
     const formData = {
       name: firstNameRef.current.value + " " + lastNameRef.current.value,
       address: addressRef.current.value,
-      phoneNumber: phoneRef.current.value,
+      phone: phoneRef.current.value,
       email: emailRef.current.value,
       productId: details.productId,
       color: details.color,
@@ -131,6 +72,13 @@ function Contact() {
     };
 
     console.log("Form Values:", formData);
+
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_API}/buy`, formData)
+    } catch (error) {
+      console.error(error);
+    }
+
     setSuccessfullPage(true)
 
     localStorage.setItem("yourChoice-purchase-details", JSON.stringify(""));
@@ -142,7 +90,7 @@ function Contact() {
   };
 
   const increaseQuantity = () => {
-    if (quantity === products.find((product) => product._id === details.productId)?.quantity) {
+    if (quantity === products.quantity) {
       setEnoughQuantity(true)
     }else{
       setQuantity(prevQuantity => prevQuantity + 1);
@@ -168,7 +116,7 @@ function Contact() {
                   <p className={styles.info}>
                     Thank you for placing your order. We will inform you very soon with further updates once your order is processed.
                   </p>
-                  <Link href={"/main"}>
+                  <Link href={"/"}>
                     <button>Go to Home Page</button>
                   </Link>
                 </div>
@@ -224,30 +172,34 @@ function Contact() {
                 </div>
               </form>
               <div className={styles.detailsDiv}>
-                <img src={products.find((product) => product._id === details.productId)?.img[0].src || ""} alt="" />
-                <h2>{details ? products.find((product) => product._id === details.productId)?.title : ""}</h2>
-                <p>Total Rs: {details ? products.find((product) => product._id === details.productId)?.price * quantity : ""}</p>
-                <div className={styles.colorDiv} style={{ color: "red"}} >Selected Color:<br />
-                  <div style={{ backgroundColor: details ? details.color : "" }}></div>
-                </div>        
-                <p className={styles.selectedSize}>Selected Size: <span>{details ? details.size : ""}</span></p>
-                <div className={styles.quantityDiv}>
-                  <p>Number of Items: </p>
-                  <div>
-                    <button onClick={decreaseQuantity}>-</button>
-                      <h4>{quantity}</h4>
-                    <button onClick={increaseQuantity}>+</button>
-                  </div>
-                    <p 
-                      style={{ display: enoughQuantity ? "block" : "none", fontWeight: 'lighter', color: "red" }} >
-                        we have only  <span style={{ fontWeight: 'bolder' }}>
-                        {products.find((product) => product._id === details.productId)?.quantity}</span> items of this type
+                {products && (
+                  <>
+                    <img src={products.img[0] || ""} alt="" />
+                    <h2>{products.title || ""}</h2>
+                    <p>Total Rs: {products.price * quantity || ""}</p>
+                    <div className={styles.colorDiv} style={{ color: "red"}} >Selected Color:<br />
+                      <div style={{ backgroundColor: details ? details.color : "" }}></div>
+                    </div>        
+                    <p className={styles.selectedSize}>Selected Size: <span>{details ? details.size : ""}</span></p>
+                    <div className={styles.quantityDiv}>
+                      <p>Number of Items: </p>
+                      <div>
+                        <button onClick={decreaseQuantity}>-</button>
+                          <h4>{quantity}</h4>
+                        <button onClick={increaseQuantity}>+</button>
+                      </div>
+                        <p 
+                          style={{ display: enoughQuantity ? "block" : "none", fontWeight: 'lighter', color: "red" }} >
+                            we have only  <span style={{ fontWeight: 'bolder' }}>
+                            {products.quantity}</span> items of this type
+                        </p>
+                    </div>
+                    <p className={styles.delivery}>
+                      Free delivery is offered for locations within the Nowshera to Peshawar range<br />
+                      For other cities, delivery charges will apply, we will notify you on the provided contact number after receiving your order. <br />
                     </p>
-                </div>
-                <p className={styles.delivery}>
-                  Free delivery is offered for locations within the Nowshera to Peshawar range<br />
-                  For other cities, delivery charges will apply, we will notify you on the provided contact number after receiving your order. <br />
-                </p>
+                  </>
+                )}
               </div>
             </>
           )}

@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin-bottom: 14vh;
 }
 
 .productContainer h1 {
@@ -175,6 +176,9 @@
         height: 6vh;
       }
       @media screen and (min-width: 750px) {
+            .productContainer {
+                margin-bottom: 12vh;
+            }
             .someProducts {
                 grid-template-columns: repeat(3, 1fr);
             }
