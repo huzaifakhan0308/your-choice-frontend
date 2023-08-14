@@ -71,8 +71,6 @@ function Contact() {
       quantity: quantity
     };
 
-    console.log("Form Values:", formData);
-
     try {
       await axios.post(`${process.env.NEXT_PUBLIC_API}/buy`, formData)
     } catch (error) {

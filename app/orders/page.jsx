@@ -22,8 +22,12 @@ function Page() {
 
   const [boolean, setBoolean] = useState(false)
 
+  const realtedProduct = (id) => {
+    const product = products.find((e) => e._id === id)
+    return product
+  }
+
   useEffect(() => {
-    console.log(products);
     if (orders.length > 0) {
       findProduct()
     }
@@ -48,6 +52,32 @@ function Page() {
     data()
   }, []);
 
+  const updateOrder = async (id) => {
+    const config = {
+      password: JSON.parse(localStorage.getItem("your-choice-owner")).password,
+    };
+    try {
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_API}/buy/${id}/confirm`, config )
+      window.location.reload()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const deleteOrder = async (id) => {
+    const config = {
+      params: {
+        password: JSON.parse(localStorage.getItem("your-choice-owner")).password,
+      }
+    };
+    try {
+      await axios.delete(`${process.env.NEXT_PUBLIC_API}/buy/${id}`, config )
+      window.location.reload()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <>
     {boolean?
@@ -55,29 +85,43 @@ function Page() {
       <Navbar />
         <div className={styles.container}>
           <h1>Orders</h1>
-          {orders.map((order, index) => (
-            <div className={styles.orders} key={index}>
-              {/* <img src={findProductById(order.productId)?.img[0]} alt="" /> */}
-              <div>
-                <h2>Name: {order.name}</h2>
-                <p>Address: {order.address}</p>
-                <p>Phone: {order.phoneNumber}</p>
-                {order.email ? <p>Email : {order.email}</p> : ""}
+          {products.length > 0 ?
+            orders.map((order, index) => (
+              <div className={styles.orders} key={index}>
+                <img src={realtedProduct(order.productId).img[0]} alt="" />
+                <div>
+                  <h2>Name: {order.name}</h2>
+                  <p>Address: {order.address}</p>
+                  <p>Phone: {order.phone}</p>
+                  {order.email ? <p>Email : {order.email}</p> : ""}
+                </div>
+                <div>
+                  <div>
+                    <span>Color: {order.color}</span>
+                    <div className={styles.colorsDiv} style={{ backgroundColor: order.color }}></div>
+                  </div>
+                  <p>Size: {order.size}</p>
+                  <p>City: {order.city}</p>
+                  <p>State: {order.state}</p>
+                  {order.zip ? <p> Zip: { order.zip } </p> : ""}
+                  <p>Quantity: {order.quantity}</p>
+                </div>
+                <div className={styles.buttonDiv}>
+                  <button 
+                  className={order.confirm ? styles.confirmed : ""} 
+                  onClick={() => { updateOrder(order._id) }}
+                  disabled={order.confirm}
+                  >Confirmed</button>
+                  <button 
+                  style={{ backgroundColor: "black", color: "white"}}
+                  onClick={() => { deleteOrder(order._id) }}
+                  >Delete</button>
+                </div>
               </div>
-              <div>
-                <p>Color: {order.color}</p>
-                <p>Size: {order.size}</p>
-                <p>City: {order.city}</p>
-                <p>State: {order.state}</p>
-                {order.zip ? <p> Zip: { order.zip } </p> : ""}
-                <p>Quantity: {order.quantity}</p>
-              </div>
-              <div className={styles.buttonDiv}>
-                <button className={order.confirmed ? styles.confirmed : ""}>Confirmed</button>
-                <button style={{ backgroundColor: "black", color: "white"}}>Delete</button>
-              </div>
-            </div>
-          ))}
+            ))
+            :
+            ""
+          }
         </div>
       </>
     : ""}
