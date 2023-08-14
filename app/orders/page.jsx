@@ -11,13 +11,15 @@ function Page() {
   const [products, setProducts] = useState([])
 
   const findProduct = async () => {
+    const newProducts = [];
     for (let i = 0; i < orders.length; i++) {
       const data = await findProductById(orders[i].productId)
       const isProductInArray = products.some(product => product._id === data._id);
       if (!isProductInArray) {
-        setProducts(prevProducts => [...prevProducts, data]);
+        newProducts.push(data);
       }
     }
+    setProducts((prevProducts) => [...prevProducts, ...newProducts])
   };
 
   const [boolean, setBoolean] = useState(false)

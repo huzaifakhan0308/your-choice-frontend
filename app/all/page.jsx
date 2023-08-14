@@ -3,94 +3,48 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/navbar';
 import Footer from '../../hooks/footer.jsx';
 import styles from '../../utilities/page.module.css'
-import shoes from '../../assets/shoes.jpg'
 import Card from '../../hooks/card.jsx';
 import { localStorageKeys } from '../../common/strings';
+import { useStateContext } from "../../context/StateContext";
 
 function Page() {
-  const products = [
-    {
-      title: "shoes",
-      img: [shoes],
-      price: "2000",
-      off: "20",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "1"
-    },
-    {
-      title: "handbag",
-      img: [shoes],
-      price: "1000",
-      off: "20",
-      colors: ["black", "brown"],
-      gender: "male",
-      type: "handbag",
-      _id: "2"
-    },
-    {
-      title: "jackets",
-      img: [shoes],
-      price: "500",
-      off: "",
-      colors: ["black", "brown"],
-      gender: "kid",
-      type: "jackets",
-      _id: "3"
-    },
-    {
-      title: "shoes",
-      img: [shoes],
-      price: "2000",
-      off: "20",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "4"
-    },
-    {
-      title: "shoes",
-      img: [shoes],
-      price: "2000",
-      off: "",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "5"
-    },
-    {
-      title: "shoes",
-      img: [shoes],
-      price: "2000",
-      off: "20",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "6"
-    },
-    {
-      title: "shoes",
-      img: [shoes],
-      price: "2000",
-      off: "",
-      colors: ["red", "green"],
-      gender: "female",
-      type: "shoes",
-      _id: "7"
-    }
-  ]
 
+  const { products, fetchData, productTotalCount } = useStateContext();
   const [selectedType, setSelectedType] = useState('shoes');
 
   const [favorites, setFavorites] = useState([]);
-
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem(localStorageKeys.favouriteKey));
     if (Array.isArray(storedFavorites)) {
       setFavorites(storedFavorites);
     }
   }, []);
+
+  const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const productsPerPage = 20;
+  const totalPages = Math.ceil(productTotalCount / productsPerPage);
+  const startIndex = currentPageIndex * productsPerPage;
+  const visibleProducts = products.slice(startIndex, startIndex + productsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPageIndex < totalPages - 1) {
+      setCurrentPageIndex(currentPageIndex + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPageIndex > 0) {
+      setCurrentPageIndex(currentPageIndex - 1);
+    }
+  };
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await fetchData(`?type=${selectedType}&page=${currentPageIndex}`)
+    }
+    getData()
+  }, [currentPageIndex, selectedType])
+
   return (
     <>
       <Navbar />
@@ -104,8 +58,8 @@ function Page() {
             Shoes
           </button>
           <button
-            className={selectedType === 'jackets' ? styles.selected : ''}
-            onClick={() => setSelectedType('jackets')}
+            className={selectedType === 'jacket' ? styles.selected : ''}
+            onClick={() => setSelectedType('jacket')}
           >
             Jackets
           </button>
@@ -116,8 +70,23 @@ function Page() {
             Handbags
           </button>
         </div>
+        <div className={styles.pagination}>
+          <button onClick={handlePreviousPage} disabled={currentPageIndex === 0} class="btn btn-outline-dark btn-sm">Previous</button>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPageIndex(index)}
+              className={index === currentPageIndex ? styles.activePage : ''}
+              class="btn btn-outline-dark btn-sm"
+              style={{ margin: "5px" }}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button onClick={handleNextPage} disabled={currentPageIndex === totalPages - 1} class="btn btn-outline-dark btn-sm">Next</button>
+        </div>
         <div className={styles.products}>
-          {products.filter((product) => product.type === selectedType).map((e , index) => (
+          {visibleProducts.map((e , index) => (
             <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index}/>
           ))}
         </div>

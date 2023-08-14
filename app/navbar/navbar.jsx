@@ -146,14 +146,14 @@ const Navbar = () => {
             <div className={styles.headerBottom}>
                 <select onChange={(event) => handleSelectChange(event)}>
                     <option disabled>Select a Category</option>
-                    <option value="/mens?type=jackets">Men's Jackets</option>
+                    <option value="/mens?type=jacket">Men's Jackets</option>
                     <option value="/women?type=handbag">Women's Handbags</option>
                     <option value="/mens?type=shoes">Men's Footwear Collection</option>
                     <option value="/women?type=shoes">Women's Shoe Selection</option>
                     <option value="/kids?type=shoes">Kid's Shoe Assortment</option>
                 </select>
                 <div className="">
-                    <button onClick={() => handleNavigation("/mens?type=jackets")}>Men's Jackets</button>
+                    <button onClick={() => handleNavigation("/mens?type=jacket")}>Men's Jackets</button>
                     <button onClick={() => handleNavigation("/women?type=handbag")}>Women's Handbags</button>
                     <button onClick={() => handleNavigation("/mens?type=shoes")}>Men's Footwear Collection</button>
                     <button onClick={() => handleNavigation("/women?type=shoes")}>Women's Shoe Selection</button>

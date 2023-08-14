@@ -159,17 +159,19 @@ function Home() {
               </div>
               <h2>Our Latest Collection</h2>
               <div className={styles.pagination}>
-                  <button onClick={handlePreviousPage} disabled={currentPageIndex === 0}>Previous</button>
+                  <button onClick={handlePreviousPage} disabled={currentPageIndex === 0} class="btn btn-outline-dark btn-sm">Previous</button>
                   {Array.from({ length: totalPages }, (_, index) => (
                       <button
                           key={index}
                           onClick={() => setCurrentPageIndex(index)}
                           className={index === currentPageIndex ? styles.activePage : ''}
+                          class="btn btn-outline-dark btn-sm"
+                          style={{margin: "5px"}}
                       >
                           {index + 1}
                       </button>
                   ))}
-                  <button onClick={handleNextPage} disabled={currentPageIndex === totalPages - 1}>Next</button>
+                  <button onClick={handleNextPage} disabled={currentPageIndex === totalPages - 1} class="btn btn-outline-dark btn-sm">Next</button>
               </div>
               <div className={styles.someProducts}>
                   {visibleProducts.map((e, index) => (
