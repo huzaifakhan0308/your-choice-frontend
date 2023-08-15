@@ -95,7 +95,6 @@ export const StateContext = ({ children }) => {
     }
 
     const fetchData = async (query) => {
-        console.log(query);
         try {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_API}/items${query}`);
             setProducts(response.data.items)

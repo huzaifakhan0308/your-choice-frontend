@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import styles from './page.module.css'
-import Navbar from '../navbar/navbar.jsx'
+import Navbar from '../../components/navbar/navbar.jsx'
 import Footer from '../../hooks/footer'
 import Card from '../../hooks/card.jsx';
 import { localStorageKeys } from '../../common/strings';

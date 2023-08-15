@@ -1,6 +1,6 @@
 "use client";
 import React from 'react'
-import Navbar from '../navbar/navbar'
+import Navbar from '../../components/navbar/navbar'
 import styles from './page.module.css'
 
 function Contact() {

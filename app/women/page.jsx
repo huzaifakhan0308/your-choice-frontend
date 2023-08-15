@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react'
-import Navbar from '../navbar/navbar';
+import Navbar from '../../components/navbar/navbar';
 import styles from '../../utilities/page.module.css'
 import Card from '../../hooks/card.jsx';
 import Footer from '../../hooks/footer.jsx';
@@ -69,23 +69,22 @@ function Page() {
           </button>
         </div>
         <div className={styles.pagination}>
-          <button onClick={handlePreviousPage} disabled={currentPageIndex === 0} class="btn btn-outline-dark btn-sm">Previous</button>
+          <button onClick={handlePreviousPage} disabled={currentPageIndex === 0} className="btn btn-outline-dark btn-sm">Prev</button>
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index}
               onClick={() => setCurrentPageIndex(index)}
-              className={index === currentPageIndex ? styles.activePage : ''}
-              class="btn btn-outline-dark btn-sm"
+              className={`${index === currentPageIndex ? styles.activePage : ''} btn btn-outline-dark btn-sm`}
               style={{ margin: "5px" }}
             >
               {index + 1}
             </button>
           ))}
-          <button onClick={handleNextPage} disabled={currentPageIndex === totalPages - 1} class="btn btn-outline-dark btn-sm">Next</button>
+          <button onClick={handleNextPage} disabled={currentPageIndex === totalPages - 1} className="btn btn-outline-dark btn-sm">Next</button>
         </div>
         <div className={styles.products}>
           {visibleProducts.filter((product) => product.type === selectedType).map((e, index) => (
-            <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index} />
+            <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index} key={index} />
           ))}
         </div>
       </main>

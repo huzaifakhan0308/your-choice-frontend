@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react'
-import Navbar from '../navbar/navbar';
+import Navbar from '../../components/navbar/navbar';
 import styles from './page.module.css';
 import { useStateContext } from "../../context/StateContext";
 import Card from '../../hooks/dltCard.jsx';

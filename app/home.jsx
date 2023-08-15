@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import styles from "./page.module.css";
-import Navbar from './navbar/navbar'
+import Navbar from '../components/navbar/navbar'
 import Link from 'next/link';
 import shopImg from '../assets/shopImg5.jpeg';
 import womenShoes from '../assets/womenShoes.jpeg';
@@ -71,8 +71,10 @@ function Home() {
         const interval = setInterval(() => {
             setCurrentProductIndex((prevIndex) => getNextProductWithOff(prevIndex, 1));
         }, 6000);
-        return () => clearInterval(interval);
-    }, []);
+        return () => {
+            clearInterval(interval);
+        };
+    }, [offProducts]);
 
     
     const handleNextImage = () => {
@@ -128,7 +130,7 @@ function Home() {
                           </div>
                           <div className={styles.detailsDiv}>
                               <h2>{offProducts[currentProductIndex].title}</h2>
-                              <p>Rs: {offProducts[currentProductIndex].price}</p>
+                              <p>Price: {offProducts[currentProductIndex].price}Rs</p>
                               <p>Discount: {offProducts[currentProductIndex].off}%</p>
                               <div style={{ color: "red" }}>Available Colors: <br />
                                   <div className={styles.colorsDiv}>
@@ -159,19 +161,18 @@ function Home() {
               </div>
               <h2>Our Latest Collection</h2>
               <div className={styles.pagination}>
-                  <button onClick={handlePreviousPage} disabled={currentPageIndex === 0} class="btn btn-outline-dark btn-sm">Previous</button>
+                  <button onClick={handlePreviousPage} disabled={currentPageIndex === 0} className="btn btn-outline-dark btn-sm">Prev</button>
                   {Array.from({ length: totalPages }, (_, index) => (
                       <button
                           key={index}
                           onClick={() => setCurrentPageIndex(index)}
-                          className={index === currentPageIndex ? styles.activePage : ''}
-                          class="btn btn-outline-dark btn-sm"
+                          className={`${index === currentPageIndex ? styles.activePage : ''} btn btn-outline-dark btn-sm`}
                           style={{margin: "5px"}}
                       >
                           {index + 1}
                       </button>
                   ))}
-                  <button onClick={handleNextPage} disabled={currentPageIndex === totalPages - 1} class="btn btn-outline-dark btn-sm">Next</button>
+                  <button onClick={handleNextPage} disabled={currentPageIndex === totalPages - 1} className="btn btn-outline-dark btn-sm">Next</button>
               </div>
               <div className={styles.someProducts}>
                   {visibleProducts.map((e, index) => (

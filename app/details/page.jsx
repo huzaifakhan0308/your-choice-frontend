@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react'
-import Navbar from '../navbar/navbar';
+import Navbar from '../../components/navbar/navbar';
 import styles from './page.module.css';
 import leftArrow from '../../public/right-arrow.png'
 import RightArrow from '../../public/left-arrow.png'

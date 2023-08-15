@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useRef } from 'react'
-import Navbar from '../navbar/navbar'
+import Navbar from '../../components/navbar/navbar'
 import styles from './page.module.css'
 import done from '../../public/done.png'
 import Link from 'next/link';
