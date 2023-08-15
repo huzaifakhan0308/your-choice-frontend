@@ -45,7 +45,7 @@ function Card({ e, index, favorites, setFavorites }) {
                         ))}
                     </div>
                 </div>
-                <Link className={styles.link} href="./details" onClick={() => setDetailsId(e._id)}>
+                <Link className={styles.link} href="/details" onClick={() => setDetailsId(e._id)}>
                     <button>View Product</button>
                 </Link>
             </div>
