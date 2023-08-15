@@ -53,7 +53,7 @@ function Page() {
     <>
       <Navbar />
       <main className={styles.main}>
-        <h1>Step into Elegance: Explore Our Stunning Collection of Women's Handbags and Shoes!</h1>
+        <h1>Step into Elegance: Explore Our Stunning Collection of Women&apos;s Handbags and Shoes!</h1>
         <div className={styles.menu}>
           <button
             className={selectedType === 'shoes' ? styles.selected : ''}

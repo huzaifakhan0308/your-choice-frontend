@@ -49,7 +49,7 @@ function Page() {
     <>
       <Navbar />
       <main className={styles.main}>
-        <h1>Exquisite Selection: Shop Now for Premium Men's, Women's, and Kids' Products!</h1>
+        <h1>Exquisite Selection: Shop Now for Premium Men&apos;s, Women&apos;s, and Kid&apos;s Products!</h1>
         <div className={styles.menu}>
           <button
             className={selectedType === 'shoes' ? styles.selected : ''}
@@ -86,7 +86,7 @@ function Page() {
         </div>
         <div className={styles.products}>
           {visibleProducts.map((e , index) => (
-            <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index}/>
+            <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index} key={index}/>
           ))}
         </div>
       </main>

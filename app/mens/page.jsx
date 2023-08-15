@@ -52,7 +52,7 @@ function Page() {
     <>
       <Navbar />
       <main className={styles.main}>
-        <h1>Stylish Men's Collection: Explore Our Exclusive Shoes and Jackets!</h1>
+        <h1>Stylish Men&apos;s Collection: Explore Our Exclusive Shoes and Jackets!</h1>
         <div className={styles.menu}>
           <button
             className={selectedType === 'shoes' ? styles.selected : ''}

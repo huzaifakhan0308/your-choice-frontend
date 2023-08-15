@@ -46,7 +46,7 @@ function Page() {
         {likedProducts.length > 0?
           <div className={styles.products}>
             {likedProducts.map((e, index) => (
-              <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index} />
+              <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index} key={index}/>
             ))}
           </div>
         :

@@ -11,7 +11,7 @@ function Contact() {
         <div className={styles.main}>
           <div className={styles.layout}>
             <div className="">
-              <h1>We'd love to hear from you</h1>
+            <h1>We&apos;d love to hear from you</h1>
               <p>
                 We value your feedback and welcome any queries or concerns you may have.
                 Our dedicated customer support team is ready to assist you.
