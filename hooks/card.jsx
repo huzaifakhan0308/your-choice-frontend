@@ -4,22 +4,28 @@ import Link from 'next/link'
 import blackHeart from '../public/blackHeart.png'
 import redHeart from '../public/redHeart.png'
 import { localStorageKeys } from '../common/strings'
+import { useStateContext } from "../context/StateContext";
 
 function Card({ e, index, favorites, setFavorites }) {
+
+    const { products } = useStateContext();
     
     const setDetailsId = (id) => {
         localStorage.setItem(localStorageKeys.productKey, JSON.stringify(id))
     }
     
     const handleFavoriteToggle = (id) => {
-        if (isFavorite(id)) {
-            const updatedFavorites = favorites.filter((favId) => favId !== id);
-            localStorage.setItem(localStorageKeys.favouriteKey, JSON.stringify(updatedFavorites));
-            setFavorites(updatedFavorites);
-        } else {
-            const updatedFavorites = [...favorites, id];
-            localStorage.setItem(localStorageKeys.favouriteKey, JSON.stringify(updatedFavorites));
-            setFavorites(updatedFavorites);
+        if (products[4]._id !== "5") {
+            console.log(products[4]._id);
+            if (isFavorite(id)) {
+                const updatedFavorites = favorites.filter((favId) => favId !== id);
+                localStorage.setItem(localStorageKeys.favouriteKey, JSON.stringify(updatedFavorites));
+                setFavorites(updatedFavorites);
+            } else {
+                const updatedFavorites = [...favorites, id];
+                localStorage.setItem(localStorageKeys.favouriteKey, JSON.stringify(updatedFavorites));
+                setFavorites(updatedFavorites);
+            }
         }
     };
 
