@@ -3,25 +3,90 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 100vh;
+    min-height: 85vh;
     background-image: url('../../assets/shopImg2.jpeg');
-    background-size: cover;
     background-position: center;
 }
 
 .layout {
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    padding: 100px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
     background-color: rgba(0, 0, 0, 0.563);
     width: 100%;
-    min-height: 100vh;
+    min-height: 85vh;
     color: white;
+    font-size: x-small;
 }
 
-@media screen and (min-width: 700px) {
-    /* .layout {
-        width: 80%;
-    } */
+.layout h1 {
+  font-size: large;
+}
+
+.cardDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+  background-color: #f5f5f59a;
+  font-weight: bold;
+  color: black;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.layout h2 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.layout p {
+  font-size: 10px;
+}
+
+@media screen and (min-width: 800px) {
+    .layout {
+       padding: 50px;
+       font-size: medium;
+    }
+
+    .layout h1 {
+        font-size: 24px;
+    }
+
+    .cardDiv {
+        flex-direction: row;
+        align-items: initial;
+        justify-content: initial;
+    }
+
+    .card {
+        width: 250px;
+    }
+
+    .layout h2 {
+        font-size: 24px;
+    }
+
+    .layout p {
+        font-size: 16px;
+    }
+    @media screen and (min-width: 1023px) {
+        .card {
+            width: 300px;
+        }
+        @media screen and (min-width: 1400px) {
+            .card {
+                width: 400px;
+            }
+        }
+    }
 }
