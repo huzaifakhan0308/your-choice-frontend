@@ -79,7 +79,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 56vh;
+    height: 70vh;
     background-position: center;
     background-size: cover;
 }
@@ -198,7 +198,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 45vh;
     margin: 10px;
     aspect-ratio: 1/1;
     cursor: pointer;
@@ -238,19 +238,22 @@
 }
 
 @media screen and (min-width: 450px) {
-    .offProducts {
-        height: 60vh;
-    }
 
     .someProducts {
       grid-template-columns: repeat(2, 1fr);
       width: 94%;
     }
 
+    .details {
+        width: 350px;
+    }
+
   @media screen and (min-width: 700px) {
 
         .details {
             flex-direction: row;
+            width: 90%;
+            height: 80%;
         }
 
         .products {
@@ -296,33 +299,39 @@
                 grid-template-columns: repeat(3, 1fr);
                 margin-bottom: 12vh;
             }
-            @media screen and (min-width: 1200px) {
-                .main h1 {
-                    font-size: xx-large;
-                }
-                .offProducts {
-                    height: 60vh;
-                }
-                .details .detailsDiv {
-                    font-size: larger;
-                }
-                @media screen and (min-width: 1500px) {
-                    .products {
-                        justify-content: center;
-                    }
-                    .nextBtn {
-                        width: 5vh;
-                        height: 5vh;
-                    }
-                    .someProducts {
-                        grid-template-columns: repeat(4, 1fr);
-                    }
-                    @media screen and (min-width: 1800px) {
-                        .someProducts {
-                            grid-template-columns: repeat(5, 1fr);
-                        }
-                    }
-                }
+            @media screen and (min-width: 1000px) {
+              .offProducts {
+                  height: 60vh;
+              }
+              .details {
+                  width: 80%;
+                  height: 90%;
+              }
+              @media screen and (min-width: 1200px) {
+                  .main h1 {
+                      font-size: xx-large;
+                  }
+                  .details .detailsDiv {
+                      font-size: larger;
+                  }
+                  @media screen and (min-width: 1500px) {
+                      .products {
+                          justify-content: center;
+                      }
+                      .nextBtn {
+                          width: 5vh;
+                          height: 5vh;
+                      }
+                      .someProducts {
+                          grid-template-columns: repeat(4, 1fr);
+                      }
+                      @media screen and (min-width: 1800px) {
+                          .someProducts {
+                              grid-template-columns: repeat(5, 1fr);
+                          }
+                      }
+                  }
+              }
             }
         }
     }
