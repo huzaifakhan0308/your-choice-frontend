@@ -74,6 +74,7 @@ function Page() {
 
     const purchaseDetails = {
       productId: JSON.parse(localStorage.getItem(localStorageKeys.productKey)),
+      productImg: products.img[0],
       color: selectedColor,
       size: selectedSize,
     };
@@ -117,15 +118,18 @@ function Page() {
                 <h4>Select Available Colors:</h4>
                 <div className={styles.colorButtons}>
                   {products.colors.map((color) => (
-                    <button
-                      key={color}
-                      onClick={() => setSelectedColor(color)}
-                      style={{
-                        border: selectedColor === color ? "2px solid rgba(255, 255, 255, 0.900)" : 'none',
-                        backgroundColor: color
-                      }}
-                    >
-                    </button>
+                    <div>
+                      <span>{color}</span>
+                      <button
+                        key={color}
+                        onClick={() => setSelectedColor(color)}
+                        style={{
+                          border: selectedColor === color ? "2px solid rgba(255, 255, 255, 0.900)" : 'none',
+                          backgroundColor: color
+                        }}
+                      >
+                      </button>
+                    </div>
                   ))}
                 </div>
                 <h4>Select Available Sizes:</h4>

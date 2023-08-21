@@ -87,11 +87,23 @@
     font-weight: bold;
 }
 
+.colorButtons {
+    display: flex;
+}
+
+.colorButtons div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 3px;
+    font-size: small;
+}
+
 .colorButtons button {
     width: 4vh;
     height: 4vh;
     border-radius: 50%;
-    margin: 3px;
     cursor: pointer;
 }
 
@@ -136,23 +148,6 @@
   margin-top: 20px;
 }
 
-.footer {
-    min-height: 8vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: column;
-    border-top: 1px solid black;
-    font-size: small;
-    padding: 10px;
-    margin-top: 2vh;
-}
-
-.footer span {
-    font-weight: bold;
-    margin: 10px;
-}
-
 @media screen and (min-width: 450px) {
   .someProducts {
     grid-template-columns: repeat(2, 1fr);
@@ -194,9 +189,6 @@
                 .imgSideDiv {
                     height: 100%;
                 }
-                .img {
-                    padding: 0%;
-                }
                 .contentDiv {
                     padding: 20px;
                     height: 100%;
@@ -205,15 +197,11 @@
                     width: 4vh;
                     height: 4vh;
                 }
-                @media screen and (min-width: 1500px) {
+                @media screen and (min-width: 1400px) {
                     .someProducts {
-                        grid-template-columns: repeat(4, 1fr);
-                    }
-                    @media screen and (min-width: 1800px) {
-                        .someProducts {
-                            grid-template-columns: repeat(5, 1fr);
-                        }
-                    }
+                          grid-template-columns: repeat(4, 1fr);
+                          width: 1400px;
+                      }
                 }
             }
         }

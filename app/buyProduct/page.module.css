@@ -82,7 +82,7 @@
     padding-bottom: 10px;
 }
 
-.detailsDiv .colorDiv div {
+.detailsDiv .colorDiv .colorsContainer div {
     height: 4vh;
     width: 4vh;
     border-radius: 50%;

@@ -179,7 +179,7 @@ function Page() {
                         <div className="col-md-6">
                             <div>
                                 <input
-                                    type="number"
+                                    type="text"
                                     value={newSize}
                                     className="form-control"
                                     placeholder='Add available Sizes'

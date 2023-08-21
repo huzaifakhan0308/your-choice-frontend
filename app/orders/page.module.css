@@ -50,7 +50,7 @@
 
 .orders img {
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     margin-bottom: 10px;
 }
 

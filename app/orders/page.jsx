@@ -2,38 +2,11 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/navbar';
 import styles from './page.module.css';
-import { useStateContext } from "../../context/StateContext";
 import axios from 'axios';
 
 function Page() {
-  const { findProductById } = useStateContext();
   const [orders, setOrders] = useState([])
-  const [products, setProducts] = useState([])
-
-  const findProduct = async () => {
-    const newProducts = [];
-    for (let i = 0; i < orders.length; i++) {
-      const data = await findProductById(orders[i].productId)
-      const isProductInArray = products.some(product => product._id === data._id);
-      if (!isProductInArray) {
-        newProducts.push(data);
-      }
-    }
-    setProducts((prevProducts) => [...prevProducts, ...newProducts])
-  };
-
   const [boolean, setBoolean] = useState(false)
-
-  const realtedProduct = (id) => {
-    const product = products.find((e) => e._id === id)
-    return product
-  }
-
-  useEffect(() => {
-    if (orders.length > 0) {
-      findProduct()
-    }
-  }, [orders]);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("your-choice-owner"));
@@ -87,10 +60,9 @@ function Page() {
       <Navbar />
         <div className={styles.container}>
           <h1>Orders</h1>
-          {products.length > 0 ?
-            orders.map((order, index) => (
+          {orders.map((order, index) => (
               <div className={styles.orders} key={index}>
-                <img src={realtedProduct(order.productId).img[0]} alt="" />
+                <img src={order.productImg} alt="" />
                 <div>
                   <h2>Name: {order.name}</h2>
                   <p>Address: {order.address}</p>
@@ -120,10 +92,7 @@ function Page() {
                   >Delete</button>
                 </div>
               </div>
-            ))
-            :
-            ""
-          }
+            ))}
         </div>
       </>
     : ""}

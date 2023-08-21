@@ -62,7 +62,7 @@ function Contact() {
       address: addressRef.current.value,
       phone: phoneRef.current.value,
       email: emailRef.current.value,
-      productId: details.productId,
+      productImg: details.productImg,
       color: details.color,
       size: details.size,
       city: cityRef.current.value,
@@ -176,7 +176,10 @@ function Contact() {
                     <h2>{products.title || ""}</h2>
                     <p>Total Rs: {products.price * quantity || ""}</p>
                     <div className={styles.colorDiv} style={{ color: "red"}} >Selected Color:<br />
-                      <div style={{ backgroundColor: details ? details.color : "" }}></div>
+                      <div className={styles.colorsContainer}>
+                        <span style={{ color: "black", fontSize: "small"}} >{details.color}</span>
+                        <div style={{ backgroundColor: details ? details.color : "" }}></div>
+                      </div>
                     </div>        
                     <p className={styles.selectedSize}>Selected Size: <span>{details ? details.size : ""}</span></p>
                     <div className={styles.quantityDiv}>
