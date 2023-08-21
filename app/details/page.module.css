@@ -11,8 +11,8 @@
 }
 
 .product {
-    width: 90%;
-    min-height: 80vh;
+    width: 300px;
+    height: 600px;
     border-radius: 5px;
     overflow: hidden;
     background-position: center;
@@ -34,14 +34,15 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-height: 55%;
+    height: 55%;
     width: 100%;
     overflow: hidden;
 }
 
 .img {
   width: 100%;
-  object-fit: cover;
+  height: 90%;
+  object-fit: contain;
   transition: 0.1s ease-in-out;
 }
 
@@ -49,6 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 10%;
 }
 .buttonsContainer button {
     display: flex;
@@ -152,28 +154,27 @@
 }
 
 @media screen and (min-width: 450px) {
-
   .someProducts {
     grid-template-columns: repeat(2, 1fr);
     width: 94%;
   }
 
-  @media screen and (min-width: 500px) {
-      .product {
-          width: 80%;
-          min-height: 90vh;
-      }
-      .imgSideDiv {
-        min-height: 60%;
-      }
-      .contentDiv {
-        padding: 10px;
-        min-height: 40%;
-      }
-      .BuyBtn {
+  @media screen and (min-width: 550px) {
+    .product {
+        width: 500px;
+        height: 800px;
+    }
+    .BuyBtn {
         width: 30vh;
         height: 6vh;
-      }
+    }
+    .imgSideDiv {
+        height: 75%;
+        width: 100%;
+    }
+    .contentDiv {
+        min-height: 25%;
+    }
       @media screen and (min-width: 750px) {
             .productContainer {
                 margin-bottom: 12vh;
@@ -181,36 +182,28 @@
             .someProducts {
                 grid-template-columns: repeat(3, 1fr);
             }
-            @media screen and (min-width: 900px) {
+            @media screen and (min-width: 1000px) {
                 .product {
-                    width: 80%;
-                    min-height: 80vh;
+                    width: 1040px;
+                    height: 500px;
                 }
                 .card {
-                    min-height: 80vh;
+                    flex-direction: row;
+                    height: 100%;
                 }
                 .imgSideDiv {
                     height: 100%;
                 }
                 .img {
                     padding: 0%;
-                    padding-top: 30px;
                 }
                 .contentDiv {
                     padding: 20px;
                     height: 100%;
                 }
-                .card {
-                    flex-direction: row;
-                }
                 .buttonsContainer button {
                     width: 4vh;
                     height: 4vh;
-                }
-                .footer {
-                    flex-direction: row;
-                    height: 10vh;
-                    font-size: 15px;
                 }
                 @media screen and (min-width: 1500px) {
                     .someProducts {
