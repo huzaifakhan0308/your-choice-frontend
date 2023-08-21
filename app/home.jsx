@@ -11,6 +11,7 @@ import leftArrow from '../public/right-arrow.png'
 import RightArrow from '../public/left-arrow.png'
 import Card from '../hooks/card.jsx';
 import Footer from '../hooks/footer.jsx';
+import whatsApp from '../public/whatsapp.png'
 import { localStorageKeys } from '../common/strings';
 import { useStateContext } from "../context/StateContext";
 
@@ -118,6 +119,9 @@ function Home() {
       <>
           <Navbar />
           <main className={styles.main}>
+              <a className={styles.whatsApp} href="https://wa.me/+923179530953?text=I%20like%20the%20product%20and%20want%20to%20buy%20it!" target="_blank">
+                  <img src={whatsApp.src} alt="" />
+              </a>
               <h1 style={{ color: changeColor ? "red" : "black" }} >OFF% Products</h1>
               <div className={styles.offProducts} style={{ backgroundImage: `url(${offProducts[currentProductIndex].img[0]})` }}>
                   <div className={styles.layout}>

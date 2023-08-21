@@ -69,6 +69,19 @@
     min-height: 90vh;
 }
 
+.whatsApp {
+  position: fixed;
+  right: 0;
+  bottom: 70px;
+  margin: 10px;
+  z-index: 1;
+}
+
+.whatsApp img {
+  height: 40px;
+  transition: 0.3s ease-in-out;
+}
+
 .main h1 {
     font-size: x-large;
     padding: 10px;
@@ -304,6 +317,14 @@
 
         .cards .layouts {
           font-size: 30px;
+        }
+
+        .whatsApp img {
+          height: 50px;
+        }
+
+        .whatsApp img:hover {
+          height: 55px;
         }
         @media screen and (min-width: 750px) {
             .someProducts {
