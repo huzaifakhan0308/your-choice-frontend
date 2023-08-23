@@ -155,7 +155,13 @@ function Page() {
         <h2 style={{margin: "20px"}}>Related Products</h2>
         <div className={styles.someProducts}>
           {realtedProducts.length? realtedProducts.map((e, index) => (
-            <Card favorites={favorites} setFavorites={setFavorites} e={e} index={index} key={index} enableRefresh={true} />
+            <Card 
+            favorites={favorites} 
+            setFavorites={setFavorites} 
+            e={e} 
+            index={index} 
+            key={e._id} 
+            enableRefresh={true} />
             ))
           :
           <h2>please wait.. or view any product again!</h2>
