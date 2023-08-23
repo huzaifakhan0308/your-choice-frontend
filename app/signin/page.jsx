@@ -26,7 +26,7 @@ useEffect(() => {
   if (data && data.login === true ){
     setBoolean(true)
   }
-})
+}, [])
 
   return (
     <>
