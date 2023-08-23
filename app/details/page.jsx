@@ -117,8 +117,8 @@ function Page() {
                 }
                 <h4>Select Available Colors:</h4>
                 <div className={styles.colorButtons}>
-                  {products.colors.map((color) => (
-                    <div>
+                  {products.colors.map((color, index) => (
+                    <div key={index}>
                       <span>{color}</span>
                       <button
                         key={color}
@@ -134,9 +134,9 @@ function Page() {
                 </div>
                 <h4>Select Available Sizes:</h4>
                 <div className={styles.sizesButtons}>
-                  {products.sizes.map((size) => (
+                  {products.sizes.map((size, index) => (
                     <button
-                      key={size}
+                      key={index}
                       onClick={() => setSelectedSize(size)}
                       style={{
                         backgroundColor: selectedSize === size ? 'black' : 'transparent',
@@ -156,12 +156,12 @@ function Page() {
         <div className={styles.someProducts}>
           {realtedProducts.length? realtedProducts.map((e, index) => (
             <Card 
-            favorites={favorites} 
-            setFavorites={setFavorites} 
-            e={e} 
-            index={index} 
-            key={e._id} 
-            enableRefresh={true} />
+              favorites={favorites} 
+              setFavorites={setFavorites} 
+              e={e} 
+              index={index} 
+              key={e._id} 
+              enableRefresh={true} />
             ))
           :
           <h2>please wait.. or view any product again!</h2>
