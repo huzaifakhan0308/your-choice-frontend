@@ -106,13 +106,10 @@ Get a hosting website and give all of the github files
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-> Not features in the near future
+> sign in
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 🤝 Contributing <a name="contributing"></a>
-
-As it's my personal portfolio, no contributions are required
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
