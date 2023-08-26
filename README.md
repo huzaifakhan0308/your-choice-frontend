@@ -19,6 +19,7 @@
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
+- [📝 License](#license)
 
 # 📖 Your-Choice-Shop <a name="about-project"></a>
 
@@ -122,5 +123,11 @@ If you like this project please leave a ⭐️
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
 None
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📝 License <a name="license"></a>
+
+This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
